@@ -29,6 +29,7 @@ import {
   catalog,
   decode,
   exampleCode,
+  formatInput,
   humanDescription,
   primaryCatalog,
   sourceFor,
@@ -180,7 +181,7 @@ function DecoderPage() {
         <div className="panel-head">
           <div>
             <div className="panel-title"><Code2 /> Article number input</div>
-            <div className="panel-kicker">Separators are accepted. Use <code>-Z</code> before additional order codes.</div>
+            <div className="panel-kicker">Type the code continuously. MLFB hyphens, the <code>-Z</code> boundary and Z-code <code>+</code> separators are added automatically.</div>
           </div>
           {input && <button className="button-quiet" onClick={clear} data-testid="button-clear-input"><X /> Clear</button>}
         </div>
@@ -189,8 +190,8 @@ function DecoderPage() {
             <input
               className="code-input"
               value={input}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder="3AE5124-2AC90-6KN0-ZL1B+F30"
+              onChange={(event) => setInput(formatInput(event.target.value))}
+              placeholder="3AE51242AC906KN0L1BF30"
               aria-label="MLFB or article number"
               spellCheck={false}
               data-testid="input-mlfb"

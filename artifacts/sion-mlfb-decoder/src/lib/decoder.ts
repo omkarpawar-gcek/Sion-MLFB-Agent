@@ -65,6 +65,25 @@ export function normalizeCode(raw: string): string {
   return raw.trim().toUpperCase().replace(/\s+/g, '');
 }
 
+export function formatInput(raw: string): string {
+  const compact = raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!compact) return '';
+
+  const base = compact.slice(0, 16);
+  const suffixWithMarker = compact.slice(16);
+  const hasExplicitMarker = suffixWithMarker.startsWith('Z');
+  const suffix = hasExplicitMarker ? suffixWithMarker.slice(1) : suffixWithMarker;
+
+  let formattedBase = base.slice(0, 7);
+  if (base.length > 7) formattedBase += `-${base.slice(7, 12)}`;
+  if (base.length > 12) formattedBase += `-${base.slice(12, 16)}`;
+
+  if (!hasExplicitMarker && !suffix) return formattedBase;
+
+  const formattedSuffix = (suffix.match(/.{1,3}/g) ?? []).join('+');
+  return `${formattedBase}-Z${formattedSuffix}`;
+}
+
 export function splitInput(raw: string): { base: string; extras: string[] } {
   const normalized = normalizeCode(raw).replace(/\+/g, ' ');
   const markerIndex = normalized.indexOf('-Z');
