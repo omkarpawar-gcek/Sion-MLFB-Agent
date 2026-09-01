@@ -6,12 +6,10 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import {
   BookOpen,
   CheckCircle2,
-  ChevronRight,
   ClipboardCopy,
   Code2,
   Database,
   Download,
-  FileText,
   Gauge,
   Info,
   LayoutDashboard,
@@ -24,7 +22,7 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
+import { Route, Switch, Router as WouterRouter } from 'wouter';
 import {
   catalog,
   decode,
