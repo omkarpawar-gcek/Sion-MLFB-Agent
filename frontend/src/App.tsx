@@ -128,7 +128,49 @@ function DecoderPage() {
       if (!res.ok) {
         throw new Error(data.error || 'Failed to decode MLFB from server.');
       }
-      setResult(data.decoded_result);
+      const rawResult = data.decoded_result;
+      
+      const getSourcePage = (pos: number) => {
+        if ([1, 2, 3, 4].includes(pos)) return 'p. 14';
+        if ([5, 6, 7, 8].includes(pos)) return 'pp. 16–24';
+        if (pos === 9) return 'p. 25';
+        if (pos === 10) return 'p. 26';
+        if ([11, 12].includes(pos)) return 'p. 27';
+        if (pos === 13) return 'p. 28';
+        if (pos === 14) return 'p. 29';
+        if (pos === 15) return 'p. 30';
+        return 'p. 31';
+      };
+
+      const getLabel = (pos: number) => {
+        const labels: Record<number, string> = {
+          1: 'Superior group', 2: 'Main group', 3: 'Subgroup', 4: 'Circuit-breaker version',
+          5: 'Rated voltage', 6: 'Pole-center / terminal distance', 7: 'Short-circuit breaking current',
+          8: 'Continuous current', 9: 'Release combination', 10: 'Closing solenoid',
+          11: '1st release voltage', 12: '2nd release voltage', 13: 'Installation options',
+          14: 'Drive motor voltage', 15: 'Low-voltage interface', 16: 'Language'
+        };
+        return labels[pos] || `Position ${pos}`;
+      };
+
+      const normalizedResult = {
+        ...rawResult,
+        formattedBase: rawResult.formattedBase || rawResult.formatted_base || rawResult.raw_base,
+        primary: rawResult.primary_lookup || null,
+        extras: rawResult.extras || rawResult.all_input_codes || [],
+        warnings: rawResult.warnings || [],
+        valid: rawResult.valid !== undefined ? rawResult.valid : !(rawResult.warnings || []).some((w: string) => w.startsWith('INVALID')),
+        positionResults: (rawResult.decoded || []).map((item: any) => ({
+          ...item,
+          position: String(item.position),
+          label: item.label || getLabel(item.position),
+          sourcePage: item.sourcePage || item.source_page || getSourcePage(item.position)
+        })),
+        orderCodes: rawResult.orderCodes || rawResult.order_codes || [],
+        unknownOrderCodes: rawResult.unknownOrderCodes || rawResult.unknown_order_codes || [],
+      };
+      
+      setResult(normalizedResult);
       
       const diagRes = await fetch('/api/diagrams', {
         method: 'POST',
