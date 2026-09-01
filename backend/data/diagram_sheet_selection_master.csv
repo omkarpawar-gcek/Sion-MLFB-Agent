@@ -1,0 +1,45 @@
+topic_id,topic_name_en,blatt_no,reference_diagram,condition_type,condition_expr,release_slot,is_default,notes
+cover,Cover sheet,1,S_A7E_449_99009_031_0R (Blatt 1),always,,,TRUE,Always included.
+toc,Table of contents,2,S_A7E_449_99009_031_0R (Blatt 2),always,,,TRUE,This master index itself (not a circuit diagram).
+legend,Layout / release-combination legend / item designations,3,S_A7E_449_99009_031_0R (Blatt 3),always,,,TRUE,General legend - release-combination symbols (F/R/W/E) and item designation list. Not condition-dependent.
+motor_charge,Motor charging,4,S_A7E_449_41001_011,default,,,TRUE,Standard motor charging circuit.
+motor_charge_nomotor,Motor charging - no motor variant,4,S_A7E_449_41001_011 (footnote 3),z_code_expr,MLFB_POS14_A,,FALSE,"3AE5/3AE6 MLFB position 14=A: without motor, wiring incl. -S12 included. MLFB_POS14_A is a synthetic flag set by the caller, not a Z-code."
+closing_lockout,Electrical closing lock-out,4,S_A7E_449_41030_007,z_code_expr,A47,,FALSE,"Not together with Z=J60 (already enforced by decoder.py). ToC shows older _004 label; body text/changelog confirms _007 is current as of rev 0Q (from order 01.04.2022)."
+closing_antipump,Closing and anti-pumping w/o delay (standard),5,S_A7E_449_41012_040,default,,,TRUE,Standard variant with -S12.
+closing_antipump,Closing and anti-pumping w/o delay (J60),5,S_A7E_449_41012_042,z_code_expr,J60,,FALSE,With -S12.
+closing_antipump,Closing and anti-pumping w/o delay (A47),5,S_A7E_449_41012_043,z_code_expr,A47,,FALSE,With -S12.
+closing_antipump,Closing and anti-pumping w/o delay (S71),5,S_A7E_449_41012_046,z_code_expr,S71,,FALSE,With -S12.
+closing_antipump,Closing and anti-pumping w/o delay (S71+J60),5,S_A7E_449_41012_048,z_code_expr,S71 and J60,,FALSE,With -S12. Most specific - wins over the separate S71-only/J60-only rows when both are present.
+closing_antipump,Closing and anti-pumping w/o delay (S71+A47),5,S_A7E_449_41012_049,z_code_expr,S71 and A47,,FALSE,With -S12. Most specific - wins over the separate S71-only/A47-only rows when both are present.
+earth_switch_solenoid,Earth switch closing solenoid macro (-Y9),5,S_A7E_449_41012_010,always,,,TRUE,"Marked * = part of basis wiring set (S_A7E_449_41099_010), included regardless of other options."
+k1_signal,K1 signal supervision,11,S_A7E_449_41013_011,z_code_expr,S73,,FALSE,K1-Ueberwachung / K1 signal.
+release_1st_shunt,1st shunt release (-Y1),6,S_A7E_449_41020_011,default,,,TRUE,Standard - position 9's release-combination table always has a 1st shunt release.
+release_1st_shunt_basis,1st shunt release (-Y1) basis-wiring variant,6,S_A7E_449_41020_010,always,,,FALSE,Marked * = part of basis wiring set.
+release_2nd_shunt,2nd shunt release (-Y2),6,S_A7E_449_41021_011,position9_derived,,release_2_is_shunt,FALSE,Included when the decoded position-9 release_combination_table row has release_2 = a shunt-release type.
+release_3rd_shunt,3rd shunt release (-Y3),6,S_A7E_449_41022_011,z_code_expr,F15,,FALSE,Requires wide housing (D59); corresponds to position 9 = B with release_3 = shunt 45ms (the F15 row in release_combination_table).
+release_1st_ct,1st C.T.-operated release (-Y4),6,S_A7E_449_41024_011,position9_derived,,release_2_is_ct,FALSE,"NOTE: -Y4 numbering suggests '1st CT release' but per our verified release_combination_table the CT-operated release always occupies the release_2 or release_3 slot (1st release is always shunt). Included when release_2 is a C.T.-operated type (position 9 = G/T/U family) - needs a visual cross-check against Blatt 6 to confirm numbering."
+release_1st_ct_5a,1st C.T.-operated release 5A (-Y4.1),6,S_A7E_449_41024_014,z_code_expr,A49,,FALSE,5A variant of the C.T.-operated release.
+release_2nd_ct,2nd C.T.-operated release (-Y5),6,S_A7E_449_41025_011,position9_derived,,release_3_is_ct,FALSE,Included when release_3 is a C.T.-operated type (position 9 = T/U/V family third release).
+release_2nd_ct_5a,2nd C.T.-operated release 5A (-Y5.1),6,S_A7E_449_41025_014,z_code_expr,A49,,FALSE,5A variant; added per ECR-002087 (revision history Blatt 6).
+release_low_energy_ct,Low energy C.T.-operated release (-Y6),6,S_A7E_449_41023_011,position9_derived,,release_low_energy_ct,FALSE,Needs cross-check against release_combination_table amperage entries - low-energy variant not yet distinguished in our table by amperage alone.
+release_undervoltage,Undervoltage release (-Y7),6,S_A7E_449_41026_011,position9_derived,,any_release_is_undervoltage,FALSE,Included when position 9's combination includes an undervoltage release (codes F/S/V family).
+signal_spring_charged,Spring charged signal (standard),7,S_A7E_449_41042_011,default,,,TRUE,Standard.
+signal_spring_charged,Spring charged signal (W63),7,S_A7E_449_41042_012,z_code_expr,W63,,FALSE,3AE5 only.
+signal_trip,Switch tripping signal (standard),7,S_A7E_449_41043_011,default,,,TRUE,Standard.
+signal_trip_basis,Switch tripping signal basis-wiring variant,7,S_A7E_449_41043_010,always,,,FALSE,Marked * = part of basis wiring set.
+heating,Heating (without A47),7,S_A7E_449_41050_011,z_code_expr,(A29 or A30) and not A47,,FALSE,Requires A29 or A30 (heating order codes); Z=A47 must NOT be present.
+heating,Heating (with A47),7,S_A7E_449_41050_012,z_code_expr,(A29 or A30) and A47,,FALSE,"Requires A29 or A30, Z=A47 present. Catalog also excludes when -Y4/-Y6 (C.T.-operated releases) are present - not yet cross-referenced against position 9, flagged for manual check."
+aux_switch_12,Auxiliary switch 12NO/12NC (standard),8,S_A7E_449_41063_003,default,,,TRUE,Standard - 13th position = 0 (fixed mounting).
+aux_switch_12,Auxiliary switch 12NO/12NC (W63),8,S_A7E_449_41063_004,z_code_expr,W63,,FALSE,3AE5 only.
+aux_switch_6_alt,Auxiliary switch 6NO/6NC alt,8,S_A7E_449_41963_007,z_code_expr,S49 and J59,,FALSE,"Corrected 2026-08-22 from user-provided clean image: genuinely 'Z=S49, J59' - J59, NOT J60. Previous OCR-noise caveat was wrong. J59 is not yet documented anywhere in the main catalog KB."
+aux_switch_6,Auxiliary switch 6NO/6NC (standard),8,S_A7E_449_41061_001,default,,,TRUE,Standard.
+drawout_cassette,Drawout element (cassette, standard),9,S_A7E_449_41085_001,default,,,TRUE,Standard Siemens racking concept. Not applicable to 3AE6.
+drawout_customer_conn,Drawout element - customer connection,9,S_A7E_449_41085_002,default,,,TRUE,Standard. Not applicable to 3AE6.
+drawout_cassette_3rdparty,Drawout element (cassette) - third-party racking,9,S_A7E_449_41085_003,z_code_expr,W88 or W89,,FALSE,Requires W88 or W89 (also requires D93 per decoder.py rules). Not applicable to 3AE6.
+drawout_motor_1,Motor drawout element (1),9,S_A7E_449_41085_004,z_code_expr,(M04 or M05) and not (A47 or A30),,FALSE,Requires M04 or M05 (motorized racking); excludes A47/A30 per page-9 footnote. Not applicable to 3AE6.
+drawout_motor_2,Motor drawout element (2),9,S_A7E_449_41085_005,z_code_expr,M04 or M05,,FALSE,Requires M04 or M05. Not applicable to 3AE6.
+drawout_motor_3,Motor drawout element (3),9,S_A7E_449_41085_006,z_code_expr,M04 or M05,,FALSE,Requires M04 or M05. Not applicable to 3AE6.
+earth_switch,Earth switch,10,S_A7E_449_41066_401,default,,,TRUE,Standard. Not applicable to 3AE6.
+internal_terminal,Internal terminal diagram,11,S_A7E_449_99009_031_0R (Blatt 11),always,,,TRUE,Fixed diagram; Option Z=S73 terminals shown when applicable (see k1_signal row).
+customer_terminal,Customer terminal diagram,12,S_A7E_449_99009_031_0R (Blatt 12),always,,,TRUE,Fixed diagram.
+revision_history,Revision / change history,13,S_A7E_449_99009_031_0R (Blatt 13),reference_only,,,TRUE,Not a circuit diagram - document change log only.

@@ -1,0 +1,1274 @@
+{
+  "product": "Siemens SION vacuum circuit-breaker 3AE5",
+  "catalog": "HG 11.02 · 2026",
+  "source_file": "hg-11-02-sion-3ae5-catalog-english.pdf",
+  "scope": "Source-derived starter knowledge base for MLFB/article-number and Z/order-code decoding.",
+  "mlfb_structure": {
+    "length": 16,
+    "pattern": "3AE5nnn-n aann-nann",
+    "primary_positions": "1–8",
+    "secondary_positions": "9–12 and 14–16",
+    "installation_position": "13",
+    "special_versions": "Prefixed by -Z followed by descriptive order codes."
+  },
+  "position_codes": {
+    "1": {
+      "name": "Superior group",
+      "meaning": "Switching devices",
+      "fixed": "3"
+    },
+    "2": {
+      "name": "Main group",
+      "meaning": "Circuit-breaker",
+      "fixed": "A"
+    },
+    "3": {
+      "name": "Subgroup",
+      "meaning": "Circuit-breaker type series",
+      "fixed": "E"
+    },
+    "4": {
+      "name": "Circuit-breaker version",
+      "meaning": "SION 3AE5 version",
+      "fixed": "5"
+    },
+    "5": {
+      "name": "Rated voltage",
+      "unit": "kV",
+      "codes": {
+        "0": 7.2,
+        "1": 12,
+        "2": 17.5,
+        "3": 24,
+        "4": 36
+      }
+    },
+    "6": {
+      "name": "Pole-center distance / vertical distance between terminals",
+      "note": "Code meaning is voltage-level dependent; exact article lookup is preferred.",
+      "standard_mappings": {
+        "7.2": {
+          "0": "150 / 205 mm",
+          "1": "150 / 275 mm",
+          "2": "150 / 310 mm",
+          "3": "160 / 205 mm",
+          "4": "160 / 275 mm",
+          "5": "160 / 310 mm",
+          "6": "210 / 205 mm",
+          "7": "210 / 275 mm",
+          "8": "210 / 310 mm"
+        },
+        "12": {
+          "0": "150 / 205 mm",
+          "1": "150 / 275 mm",
+          "2": "150 / 310 mm",
+          "3": "160 / 205 mm",
+          "4": "160 / 275 mm",
+          "5": "160 / 310 mm",
+          "6": "210 / 205 mm",
+          "7": "210 / 275 mm",
+          "8": "210 / 310 mm"
+        },
+        "17.5": {
+          "0": "150 / 205 mm",
+          "1": "150 / 275 mm",
+          "2": "150 / 310 mm",
+          "3": "160 / 205 mm",
+          "4": "160 / 275 mm",
+          "5": "160 / 310 mm",
+          "6": "210 / 205 mm",
+          "7": "210 / 275 mm",
+          "8": "210 / 310 mm"
+        },
+        "24": {
+          "2": "210 / 310 mm",
+          "5": "275 / 310 mm"
+        },
+        "36": {
+          "2": "275 / 328 mm",
+          "4": "250 / 350 mm (NXAIR H)",
+          "5": "250 / 350 mm (NXAIR H)",
+          "7": "275 / 328 mm"
+        }
+      }
+    },
+    "7": {
+      "name": "Rated short-circuit breaking current",
+      "unit": "kA",
+      "codes": {
+        "2": 16,
+        "3": 20,
+        "4": 25,
+        "5": 31.5,
+        "6": 40
+      }
+    },
+    "8": {
+      "name": "Rated continuous current",
+      "unit": "A",
+      "codes": {
+        "1": 800,
+        "2": 1250,
+        "3": 1600,
+        "4": 2000,
+        "6": 2500,
+        "7": 3150,
+        "8": 4000
+      }
+    },
+    "9": {
+      "name": "Release combination",
+      "note": "Full mapping extracted 2026-08-21 via pdfplumber word-coordinate extraction of catalog page 25 'Release combination' table, then cross-checked and corrected against a clean reference image of the same table provided by the user (removed one erroneous row - a phantom 3rd U-family combination - that the coordinate extraction had introduced). Legend: shunt release 30 ms; shunt release 45 ms; undervoltage release; C.t.-operated release; C.t.-operated release with tripping pulse >=0.1 Ws (20 Ohm). Footnotes: 1) operating voltage for the 1st/2nd release is selected at positions 11-12 (table-wide, not row-specific); 2) a 3rd release is only available for circuit-breakers with a wide housing (table-wide note, applies to any row using a 3rd release - i.e. the S/T/U/V families - not a specific single row); 3) operating voltage for the shunt release is selected with order code Jxx, see page 31 (attached to the two rows where a shunt release appears as the 3rd release: B/F15 and S). 'Other release combinations on request' per catalog.",
+      "codes": {
+        "A": "1st release: shunt release 30 ms (no 2nd/3rd release)",
+        "B": "1st release: shunt release 30 ms, plus a 2nd and/or 3rd release using shunt-release entries - see release_combination_table for the exact row (order code G39 when 2nd release = shunt 30 ms; no order code when 2nd release = shunt 45 ms; order code F15 when 2nd = shunt 45 ms and 3rd = shunt 45 ms, footnote 3 applies)",
+        "C": "1st release: shunt release 30 ms; 2nd release: C.t.-operated release with tripping pulse >=0.1 Ws (20 Ohm)",
+        "F": "1st release: shunt release 30 ms; 2nd release: undervoltage release",
+        "G": "1st release: shunt release 30 ms; 2nd release: C.t.-operated release (0.5 A, no order code, or 5.0 A with order code A49)",
+        "H": "1st release: shunt release 30 ms; 2nd release: C.t.-operated release 1.0 A",
+        "S": "1st release: shunt release 30 ms; 2nd release: undervoltage release; 3rd release: shunt release 45 ms (footnote 3: shunt voltage selected via order code Jxx)",
+        "T": "1st release: shunt release 30 ms; 2nd release: shunt release 45 ms; 3rd release: C.t.-operated release (0.5 A no order code / 5.0 A order code A49 / 1.0 A order code A46) or C.t.-operated release with tripping pulse (order code A45)",
+        "U": "1st release: shunt release 30 ms; 2nd and 3rd release: matching C.t.-operated release amperages (0.5/0.5 A no order code, or 5.0/5.0 A order code A49)",
+        "V": "1st release: shunt release 30 ms; 2nd release: undervoltage release; 3rd release: C.t.-operated release (0.5 A no order code / 5.0 A order code A49 / 1.0 A order code A46) or C.t.-operated release with tripping pulse (order code A45)"
+      },
+      "release_combination_table": [
+        {"position9": "A", "release_1": "Shunt release 30 ms", "release_2": null, "release_3": null, "order_code": null},
+        {"position9": "B", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 30 ms", "release_3": null, "order_code": "G39"},
+        {"position9": "B", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 45 ms", "release_3": null, "order_code": null},
+        {"position9": "F", "release_1": "Shunt release 30 ms", "release_2": "Undervoltage release", "release_3": null, "order_code": null},
+        {"position9": "G", "release_1": "Shunt release 30 ms", "release_2": "C.t.-operated release 0.5 A", "release_3": null, "order_code": null},
+        {"position9": "G", "release_1": "Shunt release 30 ms", "release_2": "C.t.-operated release 5.0 A", "release_3": null, "order_code": "A49"},
+        {"position9": "H", "release_1": "Shunt release 30 ms", "release_2": "C.t.-operated release 1.0 A", "release_3": null, "order_code": null},
+        {"position9": "C", "release_1": "Shunt release 30 ms", "release_2": "C.t.-operated release with tripping pulse >=0.1 Ws (20 Ohm)", "release_3": null, "order_code": null},
+        {"position9": "B", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 45 ms", "release_3": "Shunt release 45 ms", "order_code": "F15", "footnote": "3"},
+        {"position9": "T", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 45 ms", "release_3": "C.t.-operated release 0.5 A", "order_code": null},
+        {"position9": "T", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 45 ms", "release_3": "C.t.-operated release 5.0 A", "order_code": "A49"},
+        {"position9": "T", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 45 ms", "release_3": "C.t.-operated release 1.0 A", "order_code": "A46"},
+        {"position9": "T", "release_1": "Shunt release 30 ms", "release_2": "Shunt release 45 ms", "release_3": "C.t.-operated release with tripping pulse >=0.1 Ws (20 Ohm)", "order_code": "A45"},
+        {"position9": "S", "release_1": "Shunt release 30 ms", "release_2": "Undervoltage release", "release_3": "Shunt release 45 ms", "order_code": null, "footnote": "3"},
+        {"position9": "V", "release_1": "Shunt release 30 ms", "release_2": "Undervoltage release", "release_3": "C.t.-operated release 0.5 A", "order_code": null},
+        {"position9": "V", "release_1": "Shunt release 30 ms", "release_2": "Undervoltage release", "release_3": "C.t.-operated release 5.0 A", "order_code": "A49"},
+        {"position9": "V", "release_1": "Shunt release 30 ms", "release_2": "Undervoltage release", "release_3": "C.t.-operated release 1.0 A", "order_code": "A46"},
+        {"position9": "V", "release_1": "Shunt release 30 ms", "release_2": "Undervoltage release", "release_3": "C.t.-operated release with tripping pulse >=0.1 Ws (20 Ohm)", "order_code": "A45"},
+        {"position9": "U", "release_1": "Shunt release 30 ms", "release_2": "C.t.-operated release 0.5 A", "release_3": "C.t.-operated release 0.5 A", "order_code": null},
+        {"position9": "U", "release_1": "Shunt release 30 ms", "release_2": "C.t.-operated release 5.0 A", "release_3": "C.t.-operated release 5.0 A", "order_code": "A49"}
+      ],
+      "source": "Catalog page 25 'Release combination' table, HG 11.02 2026. Verified 2026-08-21 via pdfplumber word-coordinate extraction (x/y positions), not plain text extraction, due to known rotated-header column-bleed issues on this page."
+    },
+    "10": {
+      "name": "Operating voltage of closing solenoid",
+      "codes": {
+        "B": "DC 24 V",
+        "C": "DC 48 V",
+        "D": "DC 60 V",
+        "E": "DC 110 V",
+        "F": "DC 220 V",
+        "H": "AC 100 V 50/60 Hz",
+        "J": "AC 110 V 50/60 Hz",
+        "K": "AC 230 V 50/60 Hz",
+        "M": "DC 30 V",
+        "N": "DC 32 V",
+        "P": "DC 120 V",
+        "Q": "DC 125 V",
+        "R": "DC 127 V",
+        "S": "DC 240 V",
+        "U": "AC 120 V 50/60 Hz",
+        "V": "AC 125 V 50/60 Hz",
+        "W": "AC 240 V 50/60 Hz"
+      }
+    },
+    "11": {
+      "name": "Operating voltage of the 1st release",
+      "note": "Verified 2026-08-21 against catalog page 27 'Operating voltage of the 1st release' table. Position 11 has NO '0' option (a 1st/shunt release always exists per position 9) - standard codes run 1-8, special voltages use digit 9 plus an L1x order code.",
+      "standard_code_map": {
+        "1": "DC 24 V",
+        "2": "DC 48 V",
+        "3": "DC 60 V",
+        "4": "DC 110 V",
+        "5": "DC 220 V",
+        "6": "AC 100 V 50/60 Hz",
+        "7": "AC 110 V 50/60 Hz",
+        "8": "AC 230 V 50/60 Hz"
+      },
+      "special_prefix": "9",
+      "special_order_codes": {
+        "L1A": "DC 30 V",
+        "L1B": "DC 32 V",
+        "L1C": "DC 120 V",
+        "L1D": "DC 125 V",
+        "L1E": "DC 127 V",
+        "L1F": "DC 240 V",
+        "L1K": "AC 120 V 50/60 Hz",
+        "L1L": "AC 125 V 50/60 Hz",
+        "L1M": "AC 240 V 50/60 Hz"
+      }
+    },
+    "12": {
+      "name": "Operating voltage of the 2nd release",
+      "note": "Added 2026-08-21, verified against catalog page 27 'Operating voltage of the 2nd release' table (previously NOT independently decoded - decoder.py incorrectly reused position 11's value/meaning for both positions). Position 12 DOES have a '0' option (no 2nd release, or a c.t.-operated release with no selectable voltage) since a 2nd release is optional per position 9. Standard codes 1-8 match the same voltage list as position 11; special voltages use digit 9 plus an M1x order code (distinct from position 11's L1x codes).",
+      "standard_code_map": {
+        "0": "None, or c.t.-operated release (no selectable voltage)",
+        "1": "DC 24 V",
+        "2": "DC 48 V",
+        "3": "DC 60 V",
+        "4": "DC 110 V",
+        "5": "DC 220 V",
+        "6": "AC 100 V 50/60 Hz",
+        "7": "AC 110 V 50/60 Hz",
+        "8": "AC 230 V 50/60 Hz"
+      },
+      "special_prefix": "9",
+      "special_order_codes": {
+        "M1A": "DC 30 V",
+        "M1B": "DC 32 V",
+        "M1C": "DC 120 V",
+        "M1D": "DC 125 V",
+        "M1E": "DC 127 V",
+        "M1F": "DC 240 V",
+        "M1K": "AC 120 V 50/60 Hz",
+        "M1L": "AC 125 V 50/60 Hz",
+        "M1M": "AC 240 V 50/60 Hz"
+      }
+    },
+    "11-12_legacy_note": "Positions 11 and 12 were previously (incorrectly) treated as one merged field, using only position 11's digit for both. Split 2026-08-21 into separate '11' and '12' entries above - see those for the verified per-position mappings. The 3rd release (when present per position 9's release-combination table) has NO base-MLFB position at all; its voltage is selected entirely via order codes J80-J98 (see z_codes), already documented and verified 2026-08-21.",
+    "13": {
+      "name": "Installation options / scope of installation",
+      "codes": {
+        "0": "For fixed mounting",
+        "1": "With installation components",
+        "2": "With installation components / prepared variants",
+        "3": "With installation components including contacts, bushings, fixed contacts",
+        "5": "In mounting frame",
+        "6": "In mounting frame including earthing switch"
+      }
+    },
+    "14": {
+      "name": "Operating voltage of drive motor",
+      "codes": {
+        "B": "DC 24 V",
+        "C": "DC 48 V",
+        "D": "DC 60 V",
+        "E": "DC 110 V",
+        "F": "DC 220 V",
+        "H": "AC 100 V 50/60 Hz",
+        "J": "AC 110 V 50/60 Hz",
+        "K": "AC 230 V 50/60 Hz",
+        "M": "DC 30 V",
+        "N": "DC 32 V",
+        "P": "DC 120 V",
+        "Q": "DC 125 V",
+        "R": "DC 127 V",
+        "S": "DC 240 V",
+        "U": "AC 120 V 50/60 Hz",
+        "V": "AC 125 V 50/60 Hz",
+        "W": "AC 240 V 50/60 Hz"
+      }
+    },
+    "15": {
+      "name": "Low-voltage interface / auxiliary switch",
+      "note": "Verified 2026-08-21 against catalog page 30. Mechanical interlocking and circuit-breaker tripping signal are included as standard in all configurations. The actual number of available auxiliary switch contacts depends on the equipment level and wiring option (see the detailed contact-count table on page 30 for exact NO/NC counts per configuration - not reproduced here as it doesn't map to a single MLFB position value).",
+      "codes": {
+        "A": "Internal 20-pole connection strip + 6 NO/6 NC auxiliary switch",
+        "J": "Internal 20-pole connection strip + 12 NO/12 NC auxiliary switch",
+        "V": "64-pole plug + 6 NO/6 NC auxiliary switch",
+        "N": "64-pole plug + 12 NO/12 NC auxiliary switch",
+        "X": "Extended cable harness with 64-pole plug + 12 NO/12 NC auxiliary switch (footnote: cable length selected via order code B01-B08, and order code B17 selects which plug half - lower/upper - ships in the material pack)"
+      }
+    },
+    "16": {
+      "name": "Languages of operating instructions and nameplate; power frequency of low-voltage operating voltages",
+      "note": "SOURCE CHANGED 2026-08-21 per user instruction: this position now follows the Siemens HG 11.02 \u00b7 10/2022 catalog edition (user-provided images) instead of the 2026 edition PDF used elsewhere in this project - the 2026 edition simplified/dropped the frequency split that the 2022 edition has, and the user confirmed the 2026 PDF has known problems for this position. Position 16 jointly encodes BOTH the nameplate/instructions language AND the power frequency (50 Hz/DC vs 60 Hz) used for the AC standard voltages selected at positions 10/11/12/14.",
+      "codes": {
+        "0": "German, DC or AC 50 Hz",
+        "1": "German, 60 Hz",
+        "2": "English, DC or AC 50 Hz",
+        "3": "English, 60 Hz",
+        "4": "French, DC or AC 50 Hz",
+        "5": "French, 60 Hz",
+        "6": "Spanish, DC or AC 50 Hz",
+        "7": "Spanish, 60 Hz"
+      },
+      "special_prefix": "9",
+      "special_order_codes": {
+        "R1C": "Portuguese, 50 Hz or DC",
+        "R1D": "Portuguese, 60 Hz",
+        "R1F": "Italian, DC or AC 50 Hz",
+        "R1G": "Russian, DC or AC 50 Hz",
+        "R1H": "Russian, 60 Hz",
+        "R1K": "Polish, DC or AC 50 Hz"
+      },
+      "other_languages": "Other languages on request (per 2022 edition catalog; not further specified)."
+    }
+  },
+  "z_codes": [
+    {
+      "code": "A05",
+      "description": "Cable ends with destination marking",
+      "remarks": "Only with 64-pole plug or 20-pole connection strip; not together with A11",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A10",
+      "description": "Wiring cables halogen-free and flame-retardant",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A13",
+      "description": "Flat connector with insulating sleeve",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A21",
+      "description": "Gold-plated auxiliary switch 12 NO + 12 NC and 64-pole plug",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A29",
+      "description": "Anti-condensation heating, 110 V AC, 50 W",
+      "remarks": "Not together with A30",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A30",
+      "description": "Anti-condensation heating, 230 V AC, 50 W",
+      "remarks": "Not together with A29",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A31",
+      "description": "Version free of silicone emissions",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A40",
+      "description": "Circuit-breaker for operation down to -25 °C",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "A47",
+      "description": "Electrical closing lockout",
+      "remarks": "Not together with J60",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B00",
+      "description": "Additional nameplate, loose delivery",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B01",
+      "description": "Extended cable harness 800 mm",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B02",
+      "description": "Extended cable harness 500 mm",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B03",
+      "description": "Extended cable harness 2000 mm",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B04",
+      "description": "Extended cable harness 1200 mm",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B05",
+      "description": "Extended cable harness 1500 mm",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B06",
+      "description": "Extended cable harness 2500 mm",
+      "remarks": "Only with 15th position = X; not with 24 V DC operating voltage",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B07",
+      "description": "Extended cable harness 3000 mm",
+      "remarks": "Only with 15th position = X; not with 24 V DC operating voltage",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B08",
+      "description": "Extended cable harness 3500 mm",
+      "remarks": "Only with 15th position = X; not with 24 V DC operating voltage",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B09",
+      "description": "Extended cable harness 250 mm",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B17",
+      "description": "Lower/upper plug parts supplied for extended cable harness",
+      "remarks": "Only together with 15th position = X",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B23",
+      "description": "Without upper part of plug",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B24",
+      "description": "Without material pack",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B68",
+      "description": "Certified for marine and offshore applications according to DNV",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "B99",
+      "description": "Special circuit diagram",
+      "remarks": "On request; requires circuit-diagram number",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D22",
+      "description": "Siemens withdrawable part with 220 mm racking path instead of 260 mm",
+      "remarks": "24 kV, pole-center distance 210 mm",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2, 3"
+    },
+    {
+      "code": "D23",
+      "description": "Siemens withdrawable part with 200 mm racking path instead of 220 mm",
+      "remarks": "≤17.5 kV; pole-center distance 150/160/210 mm",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2, 3"
+    },
+    {
+      "code": "D24",
+      "description": "Siemens withdrawable part with 180 mm racking path instead of 220 mm",
+      "remarks": "≤17.5 kV; pole-center distance 150/160/210 mm",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2, 3"
+    },
+    {
+      "code": "D28",
+      "description": "Protective barrier angled at the top",
+      "remarks": "24 kV, <2000 A; only together with D59",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D55",
+      "description": "Protective barrier between pole side and operating mechanism side",
+      "remarks": "Not together with D59",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D56",
+      "description": "Circuit-breaker shaft cover",
+      "remarks": "Not together with D59",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D59",
+      "description": "Circuit-breaker with wide housing",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D90",
+      "description": "Insulating shell, normal design",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D91",
+      "description": "Insulating shell, shortened design",
+      "remarks": "Selected ratings | User clarification 2026-08-20: shorter cover specifically on the contact-arm side.",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D92",
+      "description": "Insulating shell, GT4 design",
+      "remarks": "Selected ratings",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "0"
+    },
+    {
+      "code": "D93",
+      "description": "Insulating shell for racking concept of other manufacturers",
+      "remarks": "Only together with J64, W88 or W89",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "2"
+    },
+    {
+      "code": "D94",
+      "description": "Insulating shell, fully shortened design",
+      "remarks": "Selected ratings",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "D98",
+      "description": "Insulating shell, only lower part",
+      "remarks": "24 kV; only together with D90 or D91",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E02",
+      "description": "2 kV/1 min test for secondary systems instead of 1 kV/1 s",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E11",
+      "description": "Rated short-duration power-frequency withstand voltage 80 kV",
+      "remarks": "36 kV",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E13",
+      "description": "Rated short-duration power-frequency withstand voltage 42 kV",
+      "remarks": "12 kV; requires D9x",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E14",
+      "description": "Rated short-duration power-frequency withstand voltage 185 kV",
+      "remarks": "36 kV and 38 kV",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E16",
+      "description": "Rated short-duration power-frequency withstand voltage 32 kV",
+      "remarks": "7.2 kV; requires D9x",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E44",
+      "description": "Rated voltage 38 kV",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E46",
+      "description": "Rated short-circuit breaking current UPRATED to 21 kA (if base article rating is 20 kA) or to 26.3 kA (if base article rating is 25 kA) - this order code REPLACES the base position-7 rating, it is not a free choice between 21/26.3.",
+      "remarks": "12 kV tier only. Corrected 2026-08-21: catalog page 32 pairs the values positionally - 'For 12 kV/20 or 25 kA' maps to 'Isc = 21 or 26.3 kA' in the same order, i.e. 20kA base -> 21kA effective, 25kA base -> 26.3kA effective. decoder.py now computes and reports the effective rating automatically.",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E65",
+      "description": "Rated short-duration power-frequency withstand voltage 65 kV",
+      "remarks": "24 kV; requires D9x",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "E95",
+      "description": "Rated lightning impulse withstand voltage 95 kV",
+      "remarks": "12 kV; requires D9x",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F17",
+      "description": "Extended routine test certificate",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F46",
+      "description": "Siemens emblem sticker",
+      "remarks": "User-provided 2026-08-21 (from an actual device nameplate cross-check) - resolves a long-standing gap; F46 was previously not found anywhere in the HG 11.02 catalog text (76 pages searched, zero hits). Cosmetic/branding marking only - no wiring or rating impact expected.",
+      "category": "Z/additional order code (user-provided, unverified against catalog text)",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F20",
+      "description": "Routine test certificate enclosed",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F21",
+      "description": "Routine test certificate enclosed with stamp and signature",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F23",
+      "description": "Routine test certificate sent electronically",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F27",
+      "description": "Rated operating sequence O-3 min-CO-3 min-CO",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F30",
+      "description": "Hand crank for manual charging of the closing spring",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F31",
+      "description": "Long hand crank for manual charging of the closing spring",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "F32",
+      "description": "Hand crank for racking the circuit-breaker on the withdrawable part",
+      "remarks": "Withdrawable-part configurations",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2, 3, 5, 6"
+    },
+    {
+      "code": "F38",
+      "description": "Rated operating sequence O-0.3 s-CO-3 min-CO",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "J18",
+      "description": "Fixing bracket for fixed mounting",
+      "remarks": "Not together with A47",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "0"
+    },
+    {
+      "code": "J60",
+      "description": "Key-operated interlock",
+      "remarks": "Not together with A47",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "M04",
+      "description": "Third-party withdrawable part, motorized racking 110 V DC",
+      "remarks": "Only with W88/W89; not with A47, A30, A29",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2"
+    },
+    {
+      "code": "M05",
+      "description": "Third-party withdrawable part, motorized racking 220 V DC",
+      "remarks": "Only with W88/W89; not with A47, A30, A29",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2"
+    },
+    {
+      "code": "M13",
+      "description": "Contact system (tulip) with 13 contact fingers",
+      "remarks": "≤1250 A / 31.5 kA; not with W88",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "2, 3, 5, 6"
+    },
+    {
+      "code": "M22",
+      "description": "Prepared for the installation of a custom withdrawable part (wiring included)",
+      "remarks": "Only for 13th position = 2. Added 2026-08-21 from catalog p.28 'Selection of installation options' table (was previously undocumented).",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "2"
+    },
+    {
+      "code": "M23",
+      "description": "Prepared for the installation of a custom withdrawable part (wiring included)",
+      "remarks": "Only for 13th position = 3. Added 2026-08-21 from catalog p.28 'Selection of installation options' table (was previously undocumented).",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "3"
+    },
+    {
+      "code": "M30",
+      "description": "Frequent operation with up to 30,000 operating cycles",
+      "remarks": "See device-selection ratings",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "S49",
+      "description": "Auxiliary switch fully wired",
+      "remarks": "Only for fixed mounting",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "0"
+    },
+    {
+      "code": "W63",
+      "description": "Circuit-breaker for NXAIR",
+      "remarks": "Position- and rating-dependent",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "0"
+    },
+    {
+      "code": "W66",
+      "description": "Circuit-breaker for SIMOPRIME",
+      "remarks": "Position- and rating-dependent",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "0"
+    },
+    {
+      "code": "W70",
+      "description": "Warranty 24 months",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "W71",
+      "description": "Warranty 36 months",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "W72",
+      "description": "Warranty 60 months",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "W73",
+      "description": "Warranty 84 months",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "W88",
+      "description": "Circuit-breaker for other manufacturers' racking concept, with third-party components",
+      "remarks": "Requires D93; rating/configuration dependent | CORRECTED 2026-08-20: article-level compatibility table confirms W88 always requires position 13 = 2 specifically (not 1 or 2) - was previously '1, 2' at the general code level. | Tier-dependent: 2 for 7.2/12/17.5kV, NOT OFFERED at 24/36kV - see known_exceptions.w88_w89_tier_dependent_position13",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "2"
+    },
+    {
+      "code": "W89",
+      "description": "Circuit-breaker for other manufacturers' racking concept, with third-party withdrawable part",
+      "remarks": "Requires D93; rating/configuration dependent Tier-dependent: 1,2 for 7.2/12/17.5kV, 1-only for 24kV, NOT OFFERED at 36kV - see known_exceptions.w88_w89_tier_dependent_position13",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "1, 2"
+    },
+    {
+      "code": "Y40",
+      "description": "Operating instructions and special labels for USA",
+      "remarks": "All",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "Y99",
+      "description": "Other special versions not listed",
+      "remarks": "Only after consultation with order management; clear-text specification required",
+      "category": "Z/additional order code",
+      "available_for_13th_position": "All"
+    },
+    {
+      "code": "G39",
+      "description": "Release combination: 1st and 2nd release both shunt release 30 ms (position 9 = B)",
+      "remarks": "Precise meaning added 2026-08-21 from catalog page 25 release-combination table (word-coordinate verified). See position_codes.9.release_combination_table.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "A49",
+      "description": "Release combination: C.t.-operated release entry at 5.0 A (used in position-9 codes G, T, U, V rows with a 5.0 A C.t.-operated release)",
+      "remarks": "Precise meaning added 2026-08-21 from catalog page 25 release-combination table (word-coordinate verified). See position_codes.9.release_combination_table.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "A46",
+      "description": "Release combination: C.t.-operated release entry at 1.0 A (position 9 = T or V)",
+      "remarks": "Precise meaning added 2026-08-21 from catalog page 25 release-combination table (word-coordinate verified). See position_codes.9.release_combination_table.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "A45",
+      "description": "Release combination: C.t.-operated release with tripping pulse >=0.1 Ws (20 Ohm) as the 3rd release (position 9 = T or V)",
+      "remarks": "Precise meaning added 2026-08-21 from catalog page 25 release-combination table (word-coordinate verified). See position_codes.9.release_combination_table.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "F15",
+      "description": "Release combination: 1st=shunt 30 ms, 2nd=shunt 45 ms, 3rd=shunt 45 ms (position 9 = B, footnote 3: shunt voltage via order code Jxx)",
+      "remarks": "Precise meaning added 2026-08-21 from catalog page 25 release-combination table (word-coordinate verified). See position_codes.9.release_combination_table.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J64",
+      "description": "Referenced alongside W88/W89 as a third-party racking-concept compatibility option for D93 (insulating shell for racking concept of other manufacturers) and for certain spare-part contact/bushing assemblies (60 mm fixed contact) - but NO standalone definition row exists anywhere in the 76-page HG 11.02 2026 catalog.",
+      "remarks": "User-confirmed 2026-08-21: J64 does NOT appear anywhere in the user's own order history - suggesting it is a legacy, obsolete, or extremely rare code that is essentially inactive in practice, even though the catalog still lists it as a valid D93/spare-parts compatibility option (pages 32, 38, 39). Likely NOT the same code as W89 despite appearing together in spare-parts listings (J64/W89) - the D93 remark lists J64, W88, and W89 as three separate options, which would be redundant if J64 and W89 were identical. Treat as a real but effectively dormant code; if it ever appears in a real decode, flag for manual review rather than assuming a meaning.",
+      "category": "Z/additional order code (referenced only - no catalog definition, zero known real-world usage)",
+      "available_for_13th_position": "NOT DOCUMENTED"
+    },
+    {
+      "code": "J80",
+      "description": "3rd release operating voltage: DC 24 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J83",
+      "description": "3rd release operating voltage: DC 48 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J84",
+      "description": "3rd release operating voltage: DC 60 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J85",
+      "description": "3rd release operating voltage: DC 110 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J89",
+      "description": "3rd release operating voltage: DC 220 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J92",
+      "description": "3rd release operating voltage: AC 100 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J93",
+      "description": "3rd release operating voltage: AC 110 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J97",
+      "description": "3rd release operating voltage: AC 230 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J81",
+      "description": "3rd release operating voltage: DC 30 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J82",
+      "description": "3rd release operating voltage: DC 32 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J86",
+      "description": "3rd release operating voltage: DC 120 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J87",
+      "description": "3rd release operating voltage: DC 125 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J88",
+      "description": "3rd release operating voltage: DC 127 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J90",
+      "description": "3rd release operating voltage: DC 240 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J95",
+      "description": "3rd release operating voltage: AC 120 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J96",
+      "description": "3rd release operating voltage: AC 125 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "J98",
+      "description": "3rd release operating voltage: AC 240 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1C",
+      "description": "Portuguese operating instructions/nameplate, 50 Hz or DC",
+      "remarks": "Source changed 2026-08-21 to 2022 catalog edition per user instruction - now includes the frequency-specific meaning.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1D",
+      "description": "Portuguese operating instructions/nameplate, 60 Hz",
+      "remarks": "Added 2026-08-21 from 2022 catalog edition per user instruction.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1F",
+      "description": "Italian operating instructions/nameplate, DC or AC 50 Hz",
+      "remarks": "Source changed 2026-08-21 to 2022 catalog edition per user instruction.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1G",
+      "description": "Russian operating instructions/nameplate, DC or AC 50 Hz",
+      "remarks": "Source changed 2026-08-21 to 2022 catalog edition per user instruction.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1H",
+      "description": "Russian operating instructions/nameplate, 60 Hz",
+      "remarks": "Added 2026-08-21 from 2022 catalog edition per user instruction.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1K",
+      "description": "Polish operating instructions/nameplate, DC or AC 50 Hz",
+      "remarks": "Source changed 2026-08-21 to 2022 catalog edition per user instruction.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "R1L",
+      "description": "Turkish operating instructions/nameplate",
+      "remarks": "NOTE 2026-08-21: this code was in the 2026 catalog edition's language table but does NOT appear in the 2022 edition's table (which the project now follows for position 16 per user instruction). Kept as a known code, but no longer cross-referenced from position_codes.16.special_order_codes - not currently a selectable option in the active language table. Flag if seen in a real decode.",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1A",
+      "description": "1st/2nd release special voltage: DC 30 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1B",
+      "description": "1st/2nd release special voltage: DC 32 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1C",
+      "description": "1st/2nd release special voltage: DC 120 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1D",
+      "description": "1st/2nd release special voltage: DC 125 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1E",
+      "description": "1st/2nd release special voltage: DC 127 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1F",
+      "description": "1st/2nd release special voltage: DC 240 V",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1K",
+      "description": "1st/2nd release special voltage: AC 120 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1L",
+      "description": "1st/2nd release special voltage: AC 125 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "L1M",
+      "description": "1st/2nd release special voltage: AC 240 V 50/60 Hz",
+      "category": "special order code",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "C25",
+      "description": "M25 pole shell instead of M31 pole shell",
+      "remarks": "User-provided 2026-08-20 - NOT found in the HG 11.02 catalog text (76 pages searched, zero hits). Treat as unverified until confirmed against an official source.",
+      "category": "Z/additional order code (user-provided, unverified)",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    },
+    {
+      "code": "W69",
+      "description": "For channel partner product",
+      "remarks": "User-confirmed 2026-08-21: alternative to W63 - every VCB in the NXAIR-family article set (see article_option_compatibility.csv W63_required=YES) is EITHER an NXAIR installation unit (W63) OR a channel partner product (W69), not both. Still not found in the HG 11.02 catalog text itself (76 pages searched, zero hits) - the code's existence and role remain user-provided/unverified against the official source, but accepted as accurate product knowledge.",
+      "category": "Z/additional order code (user-provided, unverified)",
+      "available_for_13th_position": "NOT DOCUMENTED - not seen in the A05-Y99 Options table screenshots"
+    }
+  ],
+  "validation_rules": [
+    {
+      "rule": "A29_conflicts_A30",
+      "if": "A29 and A30 both present",
+      "result": "invalid"
+    },
+    {
+      "rule": "A47_conflicts_J60",
+      "if": "A47 and J60 both present",
+      "result": "invalid"
+    },
+    {
+      "rule": "W88_requires_D93",
+      "if": "W88 present without D93",
+      "result": "invalid"
+    },
+    {
+      "rule": "W89_requires_D93",
+      "if": "W89 present without D93",
+      "result": "invalid"
+    },
+    {
+      "rule": "M04_requires_W88_or_W89",
+      "if": "M04 present without W88 or W89",
+      "result": "invalid"
+    },
+    {
+      "rule": "M05_requires_W88_or_W89",
+      "if": "M05 present without W88 or W89",
+      "result": "invalid"
+    },
+    {
+      "rule": "A29_not_with_M04_M05",
+      "if": "A29 and M04/M05 both present",
+      "result": "invalid"
+    },
+    {
+      "rule": "A30_not_with_M04_M05",
+      "if": "A30 and M04/M05 both present",
+      "result": "invalid"
+    },
+    {
+      "rule": "S49_fixed_mounting_only",
+      "if": "S49 present and position 13 != 0",
+      "result": "invalid"
+    },
+    {
+      "rule": "B01_B09_require_X",
+      "if": "B01–B09 present and position 15 != X",
+      "result": "invalid"
+    },
+    {
+      "rule": "M04_M05_conflicts_A47",
+      "if": "M04 or M05 present together with A47",
+      "result": "invalid"
+    },
+    {
+      "rule": "D93_requires_J64_or_W88_or_W89",
+      "if": "D93 present without J64, W88, or W89",
+      "result": "invalid"
+    },
+    {
+      "rule": "E13_requires_insulating_shell",
+      "if": "E13 present without any of D90/D91/D92/D93/D94/D98 (D9x)",
+      "result": "invalid"
+    },
+    {
+      "rule": "E16_requires_insulating_shell",
+      "if": "E16 present without any D9x",
+      "result": "invalid"
+    },
+    {
+      "rule": "E65_requires_insulating_shell",
+      "if": "E65 present without any D9x",
+      "result": "invalid"
+    },
+    {
+      "rule": "E95_requires_insulating_shell",
+      "if": "E95 present without any D9x",
+      "result": "invalid"
+    },
+    {
+      "rule": "D98_requires_D90_or_D91",
+      "if": "D98 present without D90 or D91",
+      "result": "invalid"
+    },
+    {
+      "rule": "M13_conflicts_W88",
+      "if": "M13 present together with W88",
+      "result": "invalid"
+    },
+    {
+      "rule": "J18_conflicts_A47",
+      "if": "J18 present together with A47",
+      "result": "invalid"
+    }
+  ],
+  "primary_article_lookup_count": 360,
+  "source_pages": {
+    "article_number_structure": 14,
+    "configuration_example": 15,
+    "primary_data": "16–24",
+    "release_combination": 25,
+    "closing_solenoid_and_first_release": 26,
+    "second_and_third_release": 27,
+    "installation_options": 28,
+    "drive_motor": 29,
+    "low_voltage_interface": 30,
+    "language": 31,
+    "additional_order_codes": "32–33"
+  },
+  "known_exceptions": {
+    "position_5_special_series": {
+      "trigger": "Position 5 digit not in the standard table {0,1,2,3,4}",
+      "confirmed_values": {
+        "5": "12 kV special/extended sub-series (article numbers like 3AE55xx-x, e.g. 3AE5554, 3AE5555, 3AE5564, 3AE5565, 3AE5566) - covers higher-current variants (up to 2500A) not represented in the standard 0-4 digit voltage-tier table.",
+        "6": "17.5 kV special/extended sub-series (article numbers like 3AE562x-x, 3AE565x-x, 3AE566x-x, e.g. 3AE5624, 3AE5654, 3AE5655, 3AE5656, 3AE5664, 3AE5665, 3AE5666) - covers higher-current variants (up to 4000A) not represented in the standard 0-4 digit voltage-tier table. Pattern: standard tier digit (2) + 4 = 6.",
+        "7": "24 kV special/extended sub-series (article numbers like 3AE571x-x, 3AE574x-x, e.g. 3AE5714, 3AE5744) - covers higher-current variants (up to 2000A) not represented in the standard 0-4 digit voltage-tier table. Pattern: standard tier digit (3) + 4 = 7."
+      },
+      "rule": "Do NOT treat as an error. Resolve the true voltage tier via primary_article_technical_data_full.csv (tier_kv column) instead of the position-5 digit table. GENERAL PATTERN CONFIRMED 2026-08-20: the special/extended series digit = standard tier digit + 4 (12kV: 1+4=5, 17.5kV: 2+4=6, 24kV: 3+4=7). 7.2kV (0) and 36kV (4) show no such special series in the current data (0 rows found for digit 4 or any offset digit under those tiers).",
+      "verified": "2026-08-20: Confirmed via primary_article_technical_data_full.csv (359 rows) by grouping all articles per tier by their position-5 digit. Results: digit '5' -> 24 rows, all tier_kv=12 (100%). Digit '6' -> 25 rows, all tier_kv=17.5 (100%). Digit '7' -> 5 rows, all tier_kv=24 (100%). No mixed or ambiguous cases found. Extends the original 12kV-only exception to a general +4-offset rule.",
+      "status": "CONFIRMED_EXCEPTION"
+    },
+    "w88_w89_tier_dependent_position13": {
+      "description": "SUPERSEDED 2026-08-21 by w88_w89_per_article_position13 below. This tier-level table was built 2026-08-20 from a coordinate-based PDF extraction and was marked CONFIRMED_EXCEPTION, but the user's manual line-by-line review of article_option_compatibility.csv on 2026-08-21 found it was wrong for W88 at 24kV: 16 articles (e.g. 3AE5322-1) do offer W88 at that tier, contradicting the 'NOT OFFERED' claim below. Kept for history/audit only - decoder.py no longer uses this table.",
+      "rule": {
+        "7.2": {
+          "W88": "2",
+          "W89": "1,2"
+        },
+        "12": {
+          "W88": "2",
+          "W89": "1,2"
+        },
+        "17.5": {
+          "W88": "2",
+          "W89": "1,2"
+        },
+        "24": {
+          "W88": "NOT OFFERED - zero rows in the catalog offer W88 at 24kV",
+          "W89": "1"
+        },
+        "36": {
+          "W88": "NOT OFFERED",
+          "W89": "NOT OFFERED"
+        }
+      },
+      "verified": "2026-08-20: 92 rows (7.2kV), 121 rows (12kV), 97 rows (17.5kV), 26 rows (24kV), 24 rows (36kV) = 360 total, zero ambiguous/contradictory rows.",
+      "status": "SUPERSEDED - see w88_w89_per_article_position13"
+    },
+    "w88_w89_per_article_position13": {
+      "description": "W88/W89 position-13 requirements are set PER EXACT ARTICLE, not just per voltage tier, and further split by manual vs motorized racking variant. Source: user-corrected article_option_compatibility.csv columns W88_manual_pos13 / W88_motorized_pos13 / W89_manual_pos13 / W89_motorized_pos13, installed 2026-08-21 after the user's manual catalog review superseded the earlier tier-only table (see w88_w89_tier_dependent_position13.description for why).",
+      "enforcement": "decoder.py looks up the exact base article number (first 8 positions) in article_option_compatibility.csv. Manual vs motorized variant is selected by whether M04 or M05 (motorized third-party racking order codes) is present in the input's order codes - if so, the *_motorized_pos13 column is used, otherwise *_manual_pos13. A blank column value means that code is not offered at all for that exact article/variant (INVALID if used); a non-blank value lists the allowed position-13 value(s) (INVALID if position 13 doesn't match one of them); if the article itself isn't found in the CSV, the check reports UNRESOLVED rather than guessing.",
+      "verified": "2026-08-21: corrected data confirms W88 IS offered at 24kV for at least 16 articles (e.g. 3AE5322-1, W88_manual_pos13=1), reversing the prior tier-level NOT OFFERED claim. All 81 rows the user corrected strictly widened the previously-known allowed set (no narrowing, no out-of-range values vs. the documented position-13 code set {0,1,2,3,5,6}). Regression-tested against 7.2/12/17.5/24kV rows with both old (narrower) and newly-widened values, plus manual/motorized M04/M05 selection."
+    },
+    "d59_standard_semantics": {
+      "description": "The article-level compatibility table has two mutually-exclusive markers per article: 'D59 standard compulsory' and 'D59 optional'. Confirmed by user 2026-08-20. CSV columns renamed 2026-08-21 (from standard_available/D59_available) so D59 is the primary concept, split into these two named states.",
+      "rule": {
+        "D59_standard_compulsory=YES": "Standard housing is COMPULSORY for this exact article/rating - D59 (wide housing) is NOT offered as an alternative. No customer choice here.",
+        "D59_optional=YES": "D59 (wide housing) is a valid OPTIONAL order code for this exact article - the customer decides whether to add it or not. If not added, the base article still ships correctly (standard is not implied to be forbidden by D59 being available; D59 is an addable extra).",
+        "both=NO (20 of 360 rows)": "Neither flag is documented YES for this article in the compatibility table. Treated by decoder.py as UNRESOLVED, not silently valid or invalid - needs manual catalog review, not yet root-caused as of 2026-08-21."
+      },
+      "enforcement": "decoder.py's find_option_compatibility() looks up the exact base article number (first 8 positions) in article_option_compatibility.csv. If the input includes the D59 order code: D59_optional=YES passes; D59_standard_compulsory=YES (and D59_optional!=YES) is flagged INVALID; both=NO is flagged UNRESOLVED.",
+      "verified": "2026-08-20: tested against 3AE5002-1/3AE5012-1/3AE5322-1 (D59_optional=YES, should pass) and 3AE5322-4 (D59_standard_compulsory=YES, D59_optional=NO, should flag if D59 is used). 2026-08-21: CSV columns renamed from standard_available/D59_available to D59_standard_compulsory/D59_optional; decoder.py and this entry updated to match; 0 mapping mismatches vs. pre-rename backup across all 360 rows."
+    }
+  },
+  "known_gaps": [
+    {
+      "code": "S71_S73",
+      "issue": "S71 and S73 are referenced as real Z-code conditions in the wiring-diagram document S_A7E_449_99009_031_0R_001.pdf (table of contents, Blatt 2): S71 conditions alternate 'Closing and anti-pumping w/o delay' macros (sheets _41012_046/_048/_049), and S73 conditions the K1 signal supervision macro (_41013_011). NEITHER code appears anywhere in the main HG 11.02 catalog (2026 or 2022 editions) - discovered 2026-08-21 while building the sheet-selection master dataset, not from the catalog itself.",
+      "found": "2026-08-21, while scanning S_A7E_449_99009_031_0R_001.pdf to build data/diagram_sheet_selection_master.csv. Added to decoder.py's exposed all_input_codes so sheet_selector.py can still match on them even without a catalog description. Exact functional meaning (S71 = some closing/anti-pump variant selector, S73 = some K1-related supervision option) is inferred from wiring-diagram context only, not confirmed against an authoritative source - treat as real but undocumented, similar to J64/W69 before user confirmation."
+    },
+    {
+      "code": "position_13_value_7",
+      "issue": "Position 13 (installation options / scope of installation) is documented on catalog page 28 with only values 0,1,2,3,5,6. Value 7 has been observed in real article/Z-code combinations (e.g. 3AE5554-2AE40-7KN2) but does not appear in this table or anywhere else in the 76-page catalog (confirmed via exhaustive full-text search, 2026-08-21).",
+      "found": "2026-08-21, user confirmed: value 7 is a new/recent update to the installation-options scheme that is not yet properly documented in the current catalog edition (HG 11.02 2026). Treated by decoder.py as RECOGNIZED_BUT_UNDOCUMENTED (not flagged as an error) rather than INVALID - see known_exceptions is not used here since the meaning is still unknown; revisit once a source defining it is available."
+    },
+    {
+      "code": "J64",
+      "issue": "Referenced by D93's compatibility remark (\"Only together with J64, W88 or W89\") in the catalog's Options table (page 32), and in two spare-parts tables (pages 38-39, contact/bushing assemblies \"for circuit-breakers with J64/W89\") - but J64 itself has no standalone definition row anywhere in the 76-page catalog.",
+      "found": "2026-08-20, cross-checking two Options-table screenshots against the KB. Extended 2026-08-21: full 76-page exhaustive search found the same 3 references (page 32, 38, 39), no new ones. User confirmed 2026-08-21 that J64 does not appear anywhere in their own order history, suggesting it is a legacy/rarely-used/possibly-obsolete code. User's hypothesis that J64 might just be an alternate name for W89 was considered but rejected as unlikely (the D93 remark lists J64, W88, W89 as three separate options, which would be redundant if J64=W89). Status: real but functionally dormant code, still undefined - added to z_codes with this context; revisit only if a real decode or order actually uses it."
+    }
+  ]
+}

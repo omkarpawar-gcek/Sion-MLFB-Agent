@@ -1,0 +1,28 @@
+:root { --sblue:#0082c9; --sdark:#003250; --sbg:#f4f6f8; }
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; margin:0; background:var(--sbg); color:#222; }
+header { background:var(--sdark); color:white; padding:20px 30px; }
+header h1 { margin:0; font-size:22px; }
+header p { margin:4px 0 0; opacity:.8; font-size:13px; }
+.container { max-width:1100px; margin:0 auto; padding:24px; }
+.card { background:white; border-radius:8px; padding:20px 24px; margin-bottom:20px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.hidden { display:none !important; }
+.input-row { display:flex; gap:10px; flex-wrap:wrap; }
+input[type=text] { flex:1; min-width:280px; padding:10px 12px; font-size:15px; border:1px solid #ccc; border-radius:5px; font-family:monospace; }
+button { background:var(--sblue); color:white; border:none; padding:10px 22px; font-size:15px; border-radius:5px; cursor:pointer; }
+button:hover { background:#006ba8; }
+button:disabled { background:#9bbfd3; cursor:not-allowed; }
+h2 { color:var(--sdark); font-size:17px; border-bottom:2px solid var(--sblue); padding-bottom:6px; margin-top:0; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; }
+th, td { text-align:left; padding:6px 8px; border-bottom:1px solid #eee; }
+th { color:#666; font-weight:600; }
+#status { font-size:13.5px; color:#888; margin-top:8px; }
+#status.error { color:#c0392b; font-weight:600; }
+.warn { background:#fff3f3; border-left:4px solid #d33; padding:8px 12px; margin:6px 0; font-size:13.5px; border-radius:3px; }
+.exc { background:#eef7ff; border-left:4px solid var(--sblue); padding:8px 12px; margin:6px 0; font-size:13.5px; border-radius:3px; }
+.empty { color:#888; font-style:italic; padding:6px 0; }
+.gallery { display:flex; flex-direction:column; gap:18px; margin-top:14px; align-items:center; }
+.gallery figure { margin:0; border:1px solid #ddd; border-radius:6px; padding:10px; background:#fafafa; text-align:center; max-width:100%; }
+.gallery img { max-width:100%; height:auto; border:1px solid #eee; background:white; border-radius:4px; }
+.gallery figcaption { font-size:12.5px; color:#555; margin-top:8px; }
+.badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; background:#e6f7e6; color:#2a7a2a; margin-left:6px; }

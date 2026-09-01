@@ -1,0 +1,9 @@
+# Web app dependencies for the SION 3AE5 MLFB decoder + wiring diagram viewer.
+# The decoder/selector logic itself (src/decoder.py, src/sheet_selector.py)
+# needs no external packages - only crop_and_assemble_diagrams.py (PDF
+# cropping) and the Flask web layer do.
+
+Flask>=3.0
+pdfplumber>=0.11
+Pillow>=10.0
+gunicorn==21.2.0

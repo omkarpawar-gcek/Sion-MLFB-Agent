@@ -1,0 +1,295 @@
+Build a professional web application called "SION MLFB Decoder Agent" for decoding Siemens SION 3AE5 vacuum circuit-breaker MLFB/article numbers and Z/additional order codes.
+
+IMPORTANT:
+This is an engineering decoding tool. Do NOT use an LLM to guess or invent MLFB meanings. The deterministic decoder/database must be the source of truth. The AI layer should only explain already-decoded information in natural language.
+
+I have a Python decoder project containing:
+- data/primary_article_lookup.csv
+- data/sion_3ae5_knowledge.json
+- src/decoder.py
+
+Use these files as the initial knowledge base if they are uploaded/imported into the project.
+
+CORE FUNCTIONALITY:
+
+1. MLFB INPUT
+Create a prominent input box:
+"Enter Siemens MLFB / Article Number"
+
+Examples:
+3AE5124-2AC90-6KN0
+3AE5124-2AC90-6KN0-ZL1B+F30
+
+Add a Decode button.
+
+The application must accept:
+- hyphens
+- spaces
+- + separators
+- -Z notation
+and normalize the input before decoding.
+
+2. MLFB DECODER
+Decode the Siemens SION 3AE5 16-position article number.
+
+Show each position separately:
+
+Position 1
+Position 2
+Position 3
+Position 4
+Position 5
+Position 6
+Position 7
+Position 8
+Position 9
+Position 10
+Position 11–12
+Position 13
+Position 14
+Position 15
+Position 16
+
+For every position display:
+- Position
+- Code
+- Parameter
+- Decoded meaning
+- Unit where applicable
+- Source/catalog page where available
+
+3. PRIMARY ELECTRICAL DATA
+
+Display important parameters as cards:
+
+Rated voltage
+Rated short-circuit breaking current
+Rated continuous current
+Pole-center distance
+Vertical distance between terminals
+Closing solenoid voltage
+1st release voltage
+2nd release voltage
+3rd release voltage
+Drive motor voltage
+Installation configuration
+Low-voltage interface
+Auxiliary switch
+Documentation/nameplate language
+
+4. Z-CODE DECODER
+
+Detect additional codes after "-Z".
+
+Examples:
+
+-ZL1B+F30
+
+should decode:
+
+L1B
+→ 1st/2nd release special voltage
+→ DC 32 V
+
+F30
+→ Hand crank for manual charging of the closing spring
+
+Support multiple Z/additional order codes.
+
+Create a searchable Z-code table with:
+- Code
+- Description
+- Conditions
+- Compatibility
+- Source page
+
+5. VALIDATION ENGINE
+
+Create a validation section:
+
+Configuration Status:
+VALID / WARNING / INVALID
+
+Implement compatibility rules from the supplied Siemens catalog data.
+
+At minimum check:
+
+A29 conflicts with A30.
+
+A47 conflicts with J60.
+
+W88 requires D93.
+
+W89 requires D93.
+
+M04 requires W88 or W89.
+
+M05 requires W88 or W89.
+
+S49 is only possible for fixed mounting.
+
+B01–B09/B17 cable-harness options require position 15 = X.
+
+Do not invent additional compatibility rules.
+
+Display warnings clearly.
+
+6. HUMAN-READABLE DESCRIPTION
+
+After deterministic decoding, generate a concise technical description.
+
+Example:
+
+"Siemens SION 3AE5 vacuum circuit-breaker rated at 12 kV, 25 kA short-circuit breaking current and 1250 A continuous current, configured with a 150 mm pole-center distance and 310 mm vertical terminal distance. The configuration includes the specified release and drive voltages. Additional order codes include L1B for DC 32 V special release voltage and F30 for manual charging of the closing spring."
+
+The description must be generated ONLY from decoded structured data.
+
+If a value is unknown, say:
+"Not decoded from the available catalog data."
+
+Never guess.
+
+7. SOURCE TRACEABILITY
+
+Every decoded parameter should show its source catalog page when available.
+
+Add a "Source" column or expandable source information.
+
+The source is:
+Siemens SION vacuum circuit-breaker 3AE5
+Catalog HG 11.02 · 2026
+
+8. UI DESIGN
+
+Create a clean professional engineering dashboard.
+
+Use:
+- React
+- TypeScript
+- Tailwind CSS
+
+Layout:
+
+HEADER
+SION MLFB DECODER
+"Siemens 3AE5 Engineering Configuration Decoder"
+
+INPUT SECTION
+MLFB input
+Decode button
+Example buttons
+
+RESULTS
+Product identification
+Configuration status
+Electrical ratings
+MLFB position breakdown
+Z-code breakdown
+Human-readable description
+Warnings
+Source references
+
+Use a technical industrial style.
+Do NOT make it look like a generic chatbot.
+
+9. UNKNOWN CODES
+
+If the user enters an unknown MLFB/Z-code:
+
+Do NOT guess.
+
+Display:
+
+"Unknown code"
+
+and explain exactly which part could not be decoded.
+
+10. SEARCH
+
+Add:
+- Search MLFB
+- Search Z-code
+- Browse all Z-codes
+
+11. EXPORT
+
+Add buttons for:
+- Copy decoded description
+- Export JSON
+- Export CSV
+- Print technical report
+
+12. ARCHITECTURE
+
+Use this architecture:
+
+User Input
+↓
+Input Normalizer
+↓
+Deterministic MLFB Parser
+↓
+Primary Article Lookup
+↓
+Position Decoder
+↓
+Z-Code Decoder
+↓
+Compatibility Validator
+↓
+Structured JSON Result
+↓
+Human-readable Description Generator
+↓
+UI
+
+Keep the deterministic decoder separate from the UI.
+
+13. FUTURE AI AGENT
+
+Prepare the architecture so an LLM/RAG agent can later be added.
+
+The future agent should be able to answer questions such as:
+
+"What does this MLFB mean?"
+
+"What is the rated current?"
+
+"What voltage is the closing solenoid?"
+
+"What does ZF30 mean?"
+
+"Are these Z codes compatible?"
+
+"Give me a complete technical description."
+
+But the LLM must retrieve information from the structured knowledge base/catalog and must never invent a specification.
+
+14. IMPORTANT DATA RULE
+
+The uploaded Siemens catalog is the authoritative source for this application.
+
+Do not replace catalog-derived values with generic Siemens information from the internet.
+
+If information is unavailable in the supplied catalog/knowledge base, clearly state that it is unavailable.
+
+15. TEST CASE
+
+Include this test case:
+
+MLFB:
+3AE5124-2AC90-6KN0-ZL1B+F30
+
+Expected known information includes:
+
+Rated voltage: 12 kV
+Rated short-circuit breaking current: 25 kA
+Rated continuous current: 1250 A
+Pole-center distance: 150 mm
+Vertical terminal distance: 310 mm
+L1B: DC 32 V special release voltage
+F30: Hand crank for manual charging of closing spring
+
+The application must show these results without requiring an LLM.
+
+Make the application fully functional, not just a visual mockup.

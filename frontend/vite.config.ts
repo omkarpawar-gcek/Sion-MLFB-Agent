@@ -23,4 +23,16 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, 'dist'),
     emptyOutDir: true,
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true,
+      },
+      '/static/generated': {
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true,
+      }
+    }
+  }
 });

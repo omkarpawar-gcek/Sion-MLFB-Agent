@@ -108,28 +108,49 @@ function DecoderPage() {
   const [error, setError] = useState('');
   const [isDecoding, setIsDecoding] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [diagramUrls, setDiagramUrls] = useState<string[] | undefined>();
 
-  const submit = (event?: FormEvent) => {
+  const submit = async (event?: FormEvent) => {
     event?.preventDefault();
     setError('');
     setResult(undefined);
     setCopied(false);
+    setDiagramUrls(undefined);
     setIsDecoding(true);
-    window.setTimeout(() => {
-      try {
-        setResult(decode(input));
-      } catch (decodeError) {
-        setError(decodeError instanceof Error ? decodeError.message : 'Unable to decode this article number.');
-      } finally {
-        setIsDecoding(false);
+    
+    try {
+      const res = await fetch('/api/decode', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mlfb: input })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to decode MLFB from server.');
       }
-    }, 180);
+      setResult(data.decoded_result);
+      
+      const diagRes = await fetch('/api/diagrams', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mlfb: input })
+      });
+      const diagData = await diagRes.json();
+      if (diagRes.ok && diagData.output_pages) {
+        setDiagramUrls(diagData.output_pages);
+      }
+    } catch (decodeError) {
+      setError(decodeError instanceof Error ? decodeError.message : 'Unable to decode this article number.');
+    } finally {
+      setIsDecoding(false);
+    }
   };
 
   const loadExample = () => {
     setInput(exampleCode);
     setError('');
     setResult(undefined);
+    setDiagramUrls(undefined);
   };
 
   const clear = () => {
@@ -137,6 +158,7 @@ function DecoderPage() {
     setError('');
     setResult(undefined);
     setCopied(false);
+    setDiagramUrls(undefined);
   };
 
   const copyResult = async () => {
@@ -208,13 +230,13 @@ function DecoderPage() {
       </section>
 
       {!result && !error && !isDecoding && <section className="panel empty-state" data-testid="empty-decode-state"><div><div className="empty-glyph"><Gauge /></div><h2>Awaiting a valid article number</h2><p>Start with the supplied configuration example or enter a 16-position SION 3AE5 article number. The decoder will show the catalog evidence behind each result.</p></div></section>}
-      {isDecoding && <section className="panel empty-state" data-testid="loading-decode-state"><div><div className="empty-glyph"><Database /></div><h2>Reading local catalog</h2><p>Checking article structure, exact primary data, order codes and compatibility rules.</p></div></section>}
-      {result && <DecodeResultView result={result} copied={copied} onCopy={copyResult} onExport={exportResult} />}
+      {isDecoding && <section className="panel empty-state" data-testid="loading-decode-state"><div><div className="empty-glyph"><Database /></div><h2>Reading catalog and generating diagrams</h2><p>Checking article structure, compiling PDFs and assembling schematic macros.</p></div></section>}
+      {result && <DecodeResultView result={result} copied={copied} onCopy={copyResult} onExport={exportResult} diagramUrls={diagramUrls} />}
     </>
   );
 }
 
-function DecodeResultView({ result, copied, onCopy, onExport }: { result: DecodeResult; copied: boolean; onCopy: () => void; onExport: () => void }) {
+function DecodeResultView({ result, copied, onCopy, onExport, diagramUrls }: { result: DecodeResult; copied: boolean; onCopy: () => void; onExport: () => void; diagramUrls?: string[] }) {
   const sourceRows = sourceFor(result);
   return (
     <div className="result-stack" data-testid="decode-result">
@@ -276,6 +298,17 @@ function DecodeResultView({ result, copied, onCopy, onExport }: { result: Decode
           <div className="alert alert-info" style={{ marginTop: 14 }}><Info /><span>Interpretations are from the local SION 3AE5 knowledge base. This starter is not a certification or ordering authority.</span></div>
         </section>
       </div>
+
+      {diagramUrls && diagramUrls.length > 0 && (
+        <section className="panel section-panel" data-testid="diagrams-panel" style={{ marginTop: 18 }}>
+          <div className="section-heading"><h2>Generated Wiring Diagrams</h2><span>{diagramUrls.length} PAGE{diagramUrls.length === 1 ? '' : 'S'}</span></div>
+          <div className="diagram-list" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {diagramUrls.map((url, i) => (
+              <img key={i} src={url} alt={`Wiring diagram page ${i + 1}`} style={{ width: '100%', border: '1px solid var(--border)', borderRadius: '4px' }} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

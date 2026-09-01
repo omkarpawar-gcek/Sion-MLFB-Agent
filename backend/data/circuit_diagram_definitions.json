@@ -1,0 +1,1618 @@
+[
+  {
+    "reference_diagram": "S_A7E_449_41001_011",
+    "name_en": "Motor charging",
+    "name_de": "Motoraufzug",
+    "blatt_no": 4,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A1",
+          "footnotes": [
+            "3"
+          ]
+        },
+        {
+          "component": "-S21",
+          "pins": "21-22"
+        },
+        {
+          "terminal": "-X1.5.2"
+        },
+        {
+          "terminal": "-X1.5.1",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "wire_color": "brown"
+        },
+        {
+          "component": "-Q0-M1",
+          "type": "motor 1~",
+          "footnotes": [
+            "1",
+            "4"
+          ]
+        },
+        {
+          "wire_color": "black"
+        },
+        {
+          "terminal": "-X1.5.1",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "terminal": "-X1.5.2",
+          "footnotes": [
+            "3"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "D16"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Integrated varistor for DC>=60V",
+        "3": "3AE5,3AE6 MLFB_14=A: without motor",
+        "4": "Integrated rectifier for DC<=60V",
+        "6": "Wiring part of component"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41030_007",
+    "name_en": "Electrical Closing lock-out",
+    "name_de": "Elektrische Einschaltsperre",
+    "blatt_no": 4,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "A47",
+      "excludes": "J60",
+      "notes": "Zusatz/Order code A47. Not together with Z=J60."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A5"
+        },
+        {
+          "terminal": "-Q0-X1.6.2",
+          "pin": "2"
+        },
+        {
+          "terminal": "-Q0-X1.6.1",
+          "pin": "2",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "component": "-Q0-Y8E",
+          "pins": "A1-A2",
+          "footnotes": [
+            "1",
+            "2"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.1",
+          "pin": "1",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.2",
+          "pin": "1"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B1"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Integrated varistor DC>=60V",
+        "2": "Integrated rectifier AC/DC>=100V",
+        "6": "Wiring part of component"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_040",
+    "name_en": "Closing and anti-pumping w/o delay",
+    "name_de": "Einschaltung und Pumpverhinderung o.Delay",
+    "blatt_no": 5,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard - with -S12."
+    },
+    "diagram": {
+      "type": "ladder_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A2",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "3,6,10 (with -S3:21-22); 4,5 (with -S3:13-14)"
+        },
+        {
+          "component": "-S1",
+          "pins": "11-12"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "8"
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "8"
+        },
+        {
+          "component": "-Q0-Y9",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "component": "-Q0-S12",
+          "pins": "13-14",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B2"
+        }
+      ],
+      "footnote_refs": {
+        "1": "-S12 normally closed",
+        "3": "Integrated varistor",
+        "4": "Makro S_A7E_449_41012_010",
+        "8": "Bei DC L+ anschliessen"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_042",
+    "name_en": "Closing and anti-pumping w/o delay",
+    "name_de": "Einschaltung und Pumpverhinderung o.Delay",
+    "blatt_no": 5,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "J60",
+      "notes": "Adds -S5 (key lock-out interrupt): interrupts closing if key lock-out is activated."
+    },
+    "diagram": {
+      "type": "ladder_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A2",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "3,6,10 (with -S3:21-22); 4,5 (with -S3:13-14)"
+        },
+        {
+          "component": "-S5",
+          "pins": "21-22",
+          "footnotes": [
+            "7"
+          ],
+          "note": "key lock-out interrupt"
+        },
+        {
+          "component": "-S1",
+          "pins": "11-12"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "8"
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "8"
+        },
+        {
+          "component": "-Q0-Y9",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "component": "-Q0-S12",
+          "pins": "13-14",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B2"
+        }
+      ],
+      "footnote_refs": {
+        "7": "Option Z=J60: -S5 interrupts closing if key lock-out activated"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_046",
+    "name_en": "Closing and anti-pumping w/o delay",
+    "name_de": "Einschaltung und Pumpverhinderung o.Delay",
+    "blatt_no": 5,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "S71",
+      "notes": "S71 branch not fully characterized from available text - needs visual re-trace."
+    },
+    "diagram": {
+      "type": "ladder_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A2",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "3,6,10 (with -S3:21-22); 4,5 (with -S3:13-14)"
+        },
+        {
+          "component": "-S5",
+          "pins": "21-22",
+          "footnotes": [
+            "7"
+          ]
+        },
+        {
+          "component": "-S1",
+          "pins": "11-12"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "8"
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "8"
+        },
+        {
+          "component": "-Q0-Y9",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "component": "-Q0-S12",
+          "pins": "13-14",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B2"
+        }
+      ],
+      "footnote_refs": {
+        "5": "top terminal D4",
+        "7": "Option (S71 branch, via -S5 shared physical wiring with J60 variant)",
+        "8": "Bei DC L+ anschliessen"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_043",
+    "name_en": "Closing and anti-pumping w/o delay",
+    "name_de": "Einschaltung und Pumpverhinderung o.Delay",
+    "blatt_no": 5,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "A47",
+      "notes": "Adds -S5.1 (electrical closing lock-out interrupt): interrupts closing if Y8E lock-out is not active."
+    },
+    "diagram": {
+      "type": "ladder_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A2",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "3,6,10 (with -S3:21-22); 4,5 (with -S3:13-14)"
+        },
+        {
+          "terminal": "-Q0-X1.6.2",
+          "pin": "4",
+          "footnotes": [
+            "10"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.1",
+          "pin": "4",
+          "footnotes": [
+            "10"
+          ]
+        },
+        {
+          "component": "-S5.1",
+          "type": "NO contact",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.1",
+          "pin": "3",
+          "footnotes": [
+            "10"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.2",
+          "pin": "3"
+        },
+        {
+          "component": "-S1",
+          "pins": "11-12"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "8"
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "8"
+        },
+        {
+          "component": "-Q0-Y9",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "component": "-Q0-S12",
+          "pins": "13-14",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B2"
+        }
+      ],
+      "footnote_refs": {
+        "1": "-S12 normally closed",
+        "6": "Option Z=A47: -S5.1 interrupts closing if electrical lock-out not active",
+        "10": "Wiring part of component"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_048",
+    "name_en": "Closing and anti-pumping w/o delay",
+    "name_de": "Einschaltung und Pumpverhinderung o.Delay",
+    "blatt_no": 5,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "S71 and J60",
+      "notes": "Combines S71 branch and -S5 key lock-out branch."
+    },
+    "diagram": {
+      "type": "ladder_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A2",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "3,6,10 (with -S3:21-22); 4,5 (with -S3:13-14)"
+        },
+        {
+          "component": "-S5",
+          "pins": "21-22",
+          "footnotes": [
+            "7"
+          ]
+        },
+        {
+          "component": "-S1",
+          "pins": "11-12"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "8"
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "8"
+        },
+        {
+          "component": "-Q0-Y9",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "component": "-Q0-S12",
+          "pins": "13-14",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B2"
+        }
+      ],
+      "footnote_refs": {
+        "5": "top terminal D4",
+        "7": "Option (S71 branch, via -S5 shared physical wiring with J60 variant)",
+        "8": "Bei DC L+ anschliessen"
+      },
+      "note_shared_crop": "Shares identical physical crop with S_A7E_449_41012_046 in source PDF"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_049",
+    "name_en": "Closing and anti-pumping w/o delay",
+    "name_de": "Einschaltung und Pumpverhinderung o.Delay",
+    "blatt_no": 5,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "S71 and A47",
+      "notes": "Combines S71 branch and -S5.1 electrical lock-out branch."
+    },
+    "diagram": {
+      "type": "ladder_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A2",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "3,6,10 (with -S3:21-22); 4,5 (with -S3:13-14)"
+        },
+        {
+          "terminal": "-Q0-X1.6.2",
+          "pin": "4",
+          "footnotes": [
+            "10"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.1",
+          "pin": "4",
+          "footnotes": [
+            "10"
+          ]
+        },
+        {
+          "component": "-S5.1",
+          "type": "NO contact",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.1",
+          "pin": "3",
+          "footnotes": [
+            "10"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.6.2",
+          "pin": "3"
+        },
+        {
+          "component": "-S1",
+          "pins": "11-12"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "8"
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "8"
+        },
+        {
+          "component": "-Q0-Y9",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "component": "-Q0-S12",
+          "pins": "13-14",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-Q0-X1.5.1",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X1.5.2",
+          "pin": "7"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B2"
+        }
+      ],
+      "footnote_refs": {
+        "1": "-S12 normally closed",
+        "6": "Option Z=A47: -S5.1 interrupts closing if electrical lock-out not active",
+        "10": "Wiring part of component"
+      },
+      "note_shared_crop": "Shares identical physical crop with S_A7E_449_41012_043 in source PDF"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41013_011",
+    "name_en": "K1 signal",
+    "name_de": "K1-Ueberwachung",
+    "blatt_no": 5,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "S73",
+      "notes": "K1-Ueberwachung / K1 signal, 13. MLFB-Stelle: 0 (fixed mounting)."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "C1",
+          "footnotes": [
+            "8"
+          ]
+        },
+        {
+          "component": "-Q0-K1",
+          "pins": "1-2",
+          "footnotes": [
+            "9"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "C4"
+        }
+      ],
+      "footnote_refs": {
+        "9": "Zusatz/Order code Z=S73; 13. MLFB-Stelle: 0 (fixed mounting)"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41012_010",
+    "name_en": "Earth switch closing solenoid macro (-Y9)",
+    "name_de": "-Y9 Makro",
+    "blatt_no": 5,
+    "condition": {
+      "type": "always",
+      "expr": "",
+      "notes": "Marked * = part of basis wiring set S_A7E_449_41099_010."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "component": "-Q0-Y9",
+          "note": "closing solenoid, basis wiring reference macro"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41020_011",
+    "name_en": "1st shunt release (-Y1)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": ""
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "C2/C3",
+          "footnotes": [
+            "4"
+          ]
+        },
+        {
+          "component": "-S1",
+          "pins": "23-24"
+        },
+        {
+          "terminal": "-X1.5.2",
+          "pin": "4"
+        },
+        {
+          "terminal": "-X1.5.1",
+          "pin": "4",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "component": "-Q0-Y1",
+          "pins": "A1-A2",
+          "footnotes": [
+            "1",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-X1.5.1",
+          "pin": "3",
+          "footnotes": [
+            "6"
+          ]
+        },
+        {
+          "terminal": "-X1.5.2",
+          "pin": "3"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "D2"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Test-voltage for supervision of shunt release: 5V to 10V",
+        "4": "Makro S_A7E_449_41099_010",
+        "6": "Wiring part of component",
+        "12": "Permanent simultaneous operation of 1st/2nd release not recommended"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41021_011",
+    "name_en": "2nd shunt release (-Y2)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "position9_derived",
+      "expr": "release_2_is_shunt",
+      "notes": "Included when position 9's release_combination_table row matches slot 'release_2_is_shunt'."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A3/D3",
+          "footnotes": [
+            "4"
+          ]
+        },
+        {
+          "component": "-S1",
+          "pins": "33-34"
+        },
+        {
+          "component": "-Q0-Y2",
+          "pins": "A1-A2",
+          "footnotes": [
+            "1",
+            "8",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "a3"
+        }
+      ],
+      "footnote_refs": {
+        "8": "3AX1101 with integrated rectifier for AC/DC"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41022_011",
+    "name_en": "3rd shunt release (-Y3)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "F15",
+      "notes": "Zusatz/Order code F15."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "D5/C5",
+          "footnotes": [
+            "4"
+          ]
+        },
+        {
+          "component": "-S1",
+          "pins": "43-44"
+        },
+        {
+          "component": "-Q0-Y3",
+          "pins": "A1-A2",
+          "footnotes": [
+            "1",
+            "2",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B5"
+        }
+      ],
+      "footnote_refs": {
+        "2": "3AX1410 without integrated rectifier"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41024_011",
+    "name_en": "1st C.T.-operated release (-Y4)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "position9_derived",
+      "expr": "release_2_is_ct",
+      "notes": "Included when position 9's release_combination_table row matches slot 'release_2_is_ct'."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A4"
+        },
+        {
+          "component": "-Q0-Y4",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B4"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41024_014",
+    "name_en": "1st C.T.operated release 5A (-Y4.1)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "A49",
+      "notes": "Zusatz/Order code A49."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A4"
+        },
+        {
+          "component": "-Q0-V4.1",
+          "type": "transformer L/N"
+        },
+        {
+          "component": "-Q0-Y4.1",
+          "pins": "A1-A2",
+          "footnotes": [
+            "1",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B4"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41025_011",
+    "name_en": "2nd C.T.-operated release (-Y5)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "position9_derived",
+      "expr": "release_3_is_ct",
+      "notes": "Included when position 9's release_combination_table row matches slot 'release_3_is_ct'."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "C5"
+        },
+        {
+          "component": "-Q0-Y5",
+          "pins": "A1-A2",
+          "footnotes": [
+            "3",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B5"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41025_014",
+    "name_en": "2nd C.T.operated release 5A (-Y5.1)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "A49",
+      "notes": "Zusatz/Order code A49."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "C5"
+        },
+        {
+          "component": "-Q0-V5.1",
+          "type": "transformer L/N"
+        },
+        {
+          "component": "-Q0-Y5.1",
+          "pins": "A1-A2",
+          "footnotes": [
+            "1",
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B5"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41023_011",
+    "name_en": "Low energy C.T.operated release (-Y6)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "position9_derived",
+      "expr": "release_low_energy_ct",
+      "notes": "Included when position 9's release_combination_table row matches slot 'release_low_energy_ct'."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A4"
+        },
+        {
+          "component": "-Q0-Y6",
+          "pins": "A1-A2",
+          "footnotes": [
+            "12"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B4"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41026_011",
+    "name_en": "Undervoltage release (-Y7)",
+    "name_de": "",
+    "blatt_no": 6,
+    "condition": {
+      "type": "position9_derived",
+      "expr": "any_release_is_undervoltage",
+      "notes": "Included when position 9's release_combination_table row matches slot 'any_release_is_undervoltage'."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "D5/C5",
+          "footnotes": [
+            "7"
+          ]
+        },
+        {
+          "component": "-S1",
+          "pins": "43-44"
+        },
+        {
+          "component": "-Q0-Y7",
+          "pins": "D1-D2",
+          "footnotes": [
+            "1",
+            "2",
+            "9",
+            "12"
+          ]
+        },
+        {
+          "component": "-Q0-R1",
+          "pins": "1-2",
+          "footnotes": [
+            "5"
+          ]
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B5"
+        }
+      ],
+      "footnote_refs": {
+        "9": "Undervoltage release always in 2nd position"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41042_011",
+    "name_en": "Spring charged signal",
+    "name_de": "Meldung Feder gespannt",
+    "blatt_no": 7,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A6"
+        },
+        {
+          "component": "-Q0-S4",
+          "pins": "13-14"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "C6/D6:21-22"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41042_012",
+    "name_en": "Spring charged signal (W63)",
+    "name_de": "Meldung Feder gespannt",
+    "blatt_no": 7,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "W63",
+      "notes": "3AE5 only."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A6"
+        },
+        {
+          "component": "-Q0-S4",
+          "pins": "13-14"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B6"
+        }
+      ],
+      "footnote_refs": {},
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41043_011",
+    "name_en": "Switch tripping signal",
+    "name_de": "Schalterfallmeldung",
+    "blatt_no": 7,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A7"
+        },
+        {
+          "terminal": "-X1.5.2",
+          "pin": "5"
+        },
+        {
+          "terminal": "-X1.5.1",
+          "pin": "5"
+        },
+        {
+          "component": "-Q0-S6",
+          "pins": "21-22",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-X1.5.1",
+          "pin": "6"
+        },
+        {
+          "terminal": "-X1.5.2",
+          "pin": "6"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B7"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Part of basis wiring set"
+      },
+      "source_verified": "user-provided precise crop image 2026-08-22"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41043_010",
+    "name_en": "Switch tripping signal (basis-wiring variant)",
+    "name_de": "Schalterfallmeldung",
+    "blatt_no": 7,
+    "condition": {
+      "type": "always",
+      "expr": "",
+      "notes": "Marked * = part of basis wiring set."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A7"
+        },
+        {
+          "terminal": "-X1.5.2",
+          "pin": "5"
+        },
+        {
+          "terminal": "-X1.5.1",
+          "pin": "5"
+        },
+        {
+          "component": "-Q0-S6",
+          "pins": "21-22",
+          "footnotes": [
+            "1"
+          ]
+        },
+        {
+          "terminal": "-X1.5.1",
+          "pin": "6"
+        },
+        {
+          "terminal": "-X1.5.2",
+          "pin": "6"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B7"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Part of basis wiring set"
+      },
+      "note_shared_crop": "Shares identical physical crop with S_A7E_449_41043_011 in source PDF"
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41050_011",
+    "name_en": "Heating (without A47)",
+    "name_de": "Heizung",
+    "blatt_no": 7,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "(A29 or A30) and not A47",
+      "notes": "Requires A29 or A30; Z=A47 must NOT be present."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A5"
+        },
+        {
+          "component": "-Q0-R01",
+          "type": "resistor",
+          "note": "heating resistor"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B1"
+        }
+      ],
+      "footnote_refs": {
+        "3": "Standard for heating, when without A47"
+      }
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41050_012",
+    "name_en": "Heating (with A47)",
+    "name_de": "Heizung",
+    "blatt_no": 7,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "(A29 or A30) and A47",
+      "notes": "Requires A29 or A30, Z=A47 present, and -Y4/-Y6 (C.T.-operated releases) absent (not yet cross-checked against position 9)."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "terminal": "-Q0-X0",
+          "pin": "A4"
+        },
+        {
+          "component": "-Q0-R01",
+          "type": "resistor"
+        },
+        {
+          "terminal": "-Q0-X0",
+          "pin": "B4"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41063_003",
+    "name_en": "Auxiliary switch 12NO/12NC (standard)",
+    "name_de": "Hilfsschalter 12S/12Oe",
+    "blatt_no": 8,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard - 13th position = 0 (fixed mounting)."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "high",
+      "elements": [
+        {
+          "connector": "-Q0-S1",
+          "contacts": "12,14,22,24,32,34,42,44,52,54,62,64",
+          "note": "12NO/12NC contact block wired to -Q0-X0 C7..C13/D... per Blatt 12 customer terminal table"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Internally wired",
+        "2": "Not wired",
+        "3": "Internally wired if release is ordered"
+      }
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41063_004",
+    "name_en": "Auxiliary switch 12NO/12NC (W63)",
+    "name_de": "Hilfsschalter 12S/12Oe",
+    "blatt_no": 8,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "W63",
+      "notes": "3AE5 only."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "medium",
+      "elements": [
+        {
+          "connector": "-Q0-S1",
+          "note": "same contact block, different plug-pin layout at 64-pole plug for W63 (NXAIR/rotated orientation)"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41963_007",
+    "name_en": "Auxiliary switch 6NO/6NC (alt)",
+    "name_de": "Hilfsschalter 6S/6Oe",
+    "blatt_no": 8,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "S49 and J59",
+      "notes": "Corrected 2026-08-22 from user-provided clean image: genuinely 'Z=S49, J59' (J59, not J60 - previously mis-flagged as OCR noise). J59 not yet documented in the main catalog KB."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "medium",
+      "elements": [
+        {
+          "connector": "-Q0-S1",
+          "contacts": "reduced 6NO/6NC set"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41061_001",
+    "name_en": "Auxiliary switch 6NO/6NC (standard)",
+    "name_de": "Hilfsschalter 6S/6Oe",
+    "blatt_no": 8,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "medium",
+      "elements": [
+        {
+          "connector": "-Q0-S1",
+          "contacts": "6NO/6NC set"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_001",
+    "name_en": "Drawout element (cassette, standard)",
+    "name_de": "Einschubkassette",
+    "blatt_no": 9,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard Siemens racking concept. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "high",
+      "elements": [
+        {
+          "connector": "-Q1",
+          "note": "Wago 10-pole pin/plug connectors, 5mm grid, to -Q1-S1.0...S1.9"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_002",
+    "name_en": "Drawout element - customer connection",
+    "name_de": "Kundenanschluss",
+    "blatt_no": 9,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "high",
+      "elements": [
+        {
+          "connector": "-Q0-X01/-X02",
+          "note": "10-pole connectors linking -Q1 drawout signals to customer terminal -Q0-X0"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_003",
+    "name_en": "Drawout element (cassette) - third-party racking",
+    "name_de": "Einschubkassette",
+    "blatt_no": 9,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "W88 or W89",
+      "notes": "Also requires D93 per decoder.py rules. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "high",
+      "elements": [
+        {
+          "connector": "-Q1",
+          "note": "third-party racking cassette variant, -Q1-S8/-S9 contacts"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_004",
+    "name_en": "Motor drawout element (1)",
+    "name_de": "Einschubmotor",
+    "blatt_no": 9,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "(M04 or M05) and not (A47 or A30)",
+      "notes": "Requires M04 or M05; excludes A47/A30 combos. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "medium",
+      "elements": [
+        {
+          "connector": "-Q1-M1",
+          "note": "motor drawout mechanism"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_005",
+    "name_en": "Motor drawout element (2)",
+    "name_de": "Einschubmotor",
+    "blatt_no": 9,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "M04 or M05",
+      "notes": "Requires M04 or M05. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "medium",
+      "elements": [
+        {
+          "connector": "-Q1-M1",
+          "note": "motor drawout mechanism variant"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_006",
+    "name_en": "Motor drawout element (3)",
+    "name_de": "Einschubmotor",
+    "blatt_no": 9,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "M04 or M05",
+      "notes": "Requires M04 or M05. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "medium",
+      "elements": [
+        {
+          "connector": "-Q1-M1",
+          "note": "motor drawout mechanism variant"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41085_010",
+    "name_en": "Motor wiring component",
+    "name_de": "Leitung Bestandteil des Motors",
+    "blatt_no": 9,
+    "condition": {
+      "type": "z_code_expr",
+      "expr": "(W88 or W89) and (M04 or M05)",
+      "notes": "Newly found 2026-08-22 from clean image (not in original table of contents). Motor wiring component, -Q1-M1 A1/A2."
+    },
+    "diagram": {
+      "type": "series_circuit",
+      "confidence": "high",
+      "elements": [
+        {
+          "component": "-Q1-M1",
+          "type": "motor",
+          "pins": "A1-A2"
+        }
+      ],
+      "footnote_refs": {}
+    }
+  },
+  {
+    "reference_diagram": "S_A7E_449_41066_401",
+    "name_en": "Earth switch (auxiliary switch 6NO/6NC)",
+    "name_de": "Erder",
+    "blatt_no": 10,
+    "condition": {
+      "type": "default",
+      "expr": "",
+      "notes": "Standard. Not applicable to 3AE6."
+    },
+    "diagram": {
+      "type": "connector_block",
+      "confidence": "high",
+      "elements": [
+        {
+          "connector": "-Q8-S1",
+          "contacts": "11,12,13,14,21,22,23,24,31,32,33,34,41,42,43,44,51,52,53,54,61,62,63,64",
+          "note": "6NO/6NC earth switch auxiliary contacts, terminal strip -Q8-S1"
+        }
+      ],
+      "footnote_refs": {
+        "1": "Not wired"
+      }
+    }
+  }
+]

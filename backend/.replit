@@ -1,0 +1,9 @@
+entrypoint = "web/app.py"
+run = "pip install -r requirements.txt -q && python web/app.py"
+
+[nix]
+channel = "stable-23_11"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
