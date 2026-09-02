@@ -156,7 +156,13 @@ function DecoderPage() {
       const normalizedResult = {
         ...rawResult,
         formattedBase: rawResult.formattedBase || rawResult.formatted_base || rawResult.raw_base,
-        primary: rawResult.primary_lookup || null,
+        primary: rawResult.primary_lookup ? {
+          ...rawResult.primary_lookup,
+          rated_voltage_kv: rawResult.primary_lookup.tier_kv,
+          rated_short_circuit_breaking_current_ka: rawResult.primary_lookup.rated_scb_current_kA,
+          rated_continuous_current_a: rawResult.primary_lookup.rated_continuous_current_A,
+          vertical_distance_between_terminals_mm: rawResult.primary_lookup.vertical_distance_terminals_mm
+        } : null,
         extras: rawResult.extras || rawResult.all_input_codes || [],
         warnings: rawResult.warnings || [],
         valid: rawResult.valid !== undefined ? rawResult.valid : !(rawResult.warnings || []).some((w: string) => w.startsWith('INVALID')),
