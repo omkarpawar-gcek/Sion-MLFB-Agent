@@ -23,7 +23,7 @@ import decoder
 import sheet_selector
 
 REF_PATTERN = re.compile(r'^S_A7E_449_\d+_\d+$')
-RES = 150
+RES = 96
 SCALE = RES / 72.0
 TOP_MARGIN_PT = 140  # below the "Position:.../Order codes" header row, excludes it from crops
 
