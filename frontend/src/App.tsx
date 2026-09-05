@@ -183,8 +183,24 @@ function DecoderPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ mlfb: input })
       });
-      const diagData = await diagRes.json();
-      if (diagRes.ok && diagData.output_pages) {
+      let diagData;
+      try {
+        const textResponse = await diagRes.text();
+        if (!textResponse.trim()) {
+          throw new Error(`Server returned an empty response (HTTP ${diagRes.status}). This is likely a Gunicorn worker timeout.`);
+        }
+        diagData = JSON.parse(textResponse);
+      } catch (err) {
+        setError(`Diagrams failed: ${err instanceof Error ? err.message : 'Invalid JSON'}`);
+        return;
+      }
+
+      if (!diagRes.ok) {
+        setError(`Diagrams failed: ${diagData.error || 'Server error'}`);
+        return;
+      }
+
+      if (diagData.output_pages) {
         setDiagramUrls(diagData.output_pages);
       }
     } catch (decodeError) {
