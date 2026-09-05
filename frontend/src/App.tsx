@@ -4,28 +4,21 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import {
-  BookOpen,
   CheckCircle2,
-  ClipboardCopy,
+  ChevronDown,
+  ChevronUp,
   Code2,
   Database,
   Download,
   Gauge,
-  Info,
-  LayoutDashboard,
-  Library,
-  Menu,
   Printer,
   Search,
   ShieldCheck,
   TriangleAlert,
-  X,
-  Zap,
 } from 'lucide-react';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import {
   catalog,
-  decode,
   exampleCode,
   formatInput,
   humanDescription,
@@ -41,63 +34,41 @@ type Tab = 'decode' | 'catalog' | 'sources';
 
 function AppShell() {
   const [tab, setTab] = useState<Tab>('decode');
-  const [mobileRail, setMobileRail] = useState(false);
 
   return (
     <div className="app-shell">
-      <aside className={`rail ${mobileRail ? 'mobile-open' : ''}`} data-testid="navigation-sidebar">
+      <header className="topbar">
         <div className="brand" data-testid="brand-sion-decoder">
-          <div className="brand-mark">3AE5</div>
-          <div>
-            <div className="brand-title">SION / MLFB</div>
-            <div className="brand-subtitle">DECODER WORKBENCH</div>
+          <div className="brand-mark">SION</div>
+          <div className="brand-text">
+            <div className="brand-title">MLFB Decoder</div>
+            <div className="brand-subtitle">Siemens Vacuum Circuit-Breaker · 3AE5</div>
           </div>
         </div>
-        <div className="rail-rule" />
-        <div className="nav-label">Workspace</div>
-        <nav className="nav-list" aria-label="Primary navigation">
-          <button className={`nav-button ${tab === 'decode' ? 'active' : ''}`} onClick={() => { setTab('decode'); setMobileRail(false); }} data-testid="nav-decode">
-            <LayoutDashboard /><span>Decode article</span>
-          </button>
-          <button className={`nav-button ${tab === 'catalog' ? 'active' : ''}`} onClick={() => { setTab('catalog'); setMobileRail(false); }} data-testid="nav-catalog">
-            <Library /><span>Z-code catalog</span>
-          </button>
-          <button className={`nav-button ${tab === 'sources' ? 'active' : ''}`} onClick={() => { setTab('sources'); setMobileRail(false); }} data-testid="nav-sources">
-            <BookOpen /><span>Source notes</span>
-          </button>
+        <nav className="nav-links">
+          <button className={`nav-link ${tab === 'decode' ? 'active' : ''}`} onClick={() => setTab('decode')}>Decode Code</button>
+          <button className={`nav-link ${tab === 'catalog' ? 'active' : ''}`} onClick={() => setTab('catalog')}>Reference Catalog</button>
+          <button className={`nav-link ${tab === 'sources' ? 'active' : ''}`} onClick={() => setTab('sources')}>Methodology & Sources</button>
         </nav>
-        <div className="rail-bottom">
-          <div className="rail-bottom-label">Local knowledge base</div>
-          <p><strong>HG 11.02 · 2026</strong><br />Deterministic lookup only. No inferred meanings.</p>
-        </div>
-      </aside>
-      <div className="workspace">
-        <header className="topbar">
-          <button className="mobile-menu" onClick={() => setMobileRail((value) => !value)} aria-label="Toggle navigation" data-testid="button-toggle-navigation">
-            <Menu />
-          </button>
-          <div className="topbar-context"><Database /> <span>Siemens SION vacuum circuit-breaker · 3AE5</span></div>
-          <div className="topbar-status"><span className="status-dot" /> LOCAL DATASET READY</div>
-        </header>
-        <main className="content">
-          {tab === 'decode' && <DecoderPage />}
-          {tab === 'catalog' && <CatalogPage />}
-          {tab === 'sources' && <SourcesPage />}
-        </main>
-      </div>
-    </div>
-  );
-}
+      </header>
 
-function PageHeading({ eyebrow, title, description, meta }: { eyebrow: string; title: string; description: string; meta: string }) {
-  return (
-    <div className="page-heading">
-      <div className="page-heading-copy">
-        <div className="eyebrow">{eyebrow}</div>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </div>
-      <div className="heading-meta">{meta}</div>
+      {tab === 'decode' && <DecoderPage />}
+      
+      {tab === 'catalog' && (
+        <main className="content-wrapper" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+          <CatalogPage />
+        </main>
+      )}
+      
+      {tab === 'sources' && (
+        <main className="content-wrapper" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+          <SourcesPage />
+        </main>
+      )}
+
+      <footer className="app-footer">
+        © 2026 SION MLFB Decoder &nbsp;·&nbsp; Developed by Omkar Pawar
+      </footer>
     </div>
   );
 }
@@ -217,14 +188,6 @@ function DecoderPage() {
     setDiagramUrls(undefined);
   };
 
-  const clear = () => {
-    setInput('');
-    setError('');
-    setResult(undefined);
-    setCopied(false);
-    setDiagramUrls(undefined);
-  };
-
   const copyResult = async () => {
     if (!result) return;
     const text = `${result.formattedBase}${result.extras.length ? ` -Z${result.extras.join('+')}` : ''}\n${humanDescription(result)}\nValidation: ${result.valid ? 'PASS' : 'REVIEW REQUIRED'}\n${result.warnings.join('\n')}`;
@@ -255,172 +218,364 @@ function DecoderPage() {
 
   return (
     <>
-      <PageHeading
-        eyebrow="Engineering workbench / deterministic decode"
-        title="Decode an article number."
-        description="Trace every position of a Siemens SION 3AE5 MLFB to the local catalog. Unknown segments stay unknown."
-        meta="KB REVISION  ·  HG 11.02 / 2026"
-      />
-      <section className="panel decode-panel" data-testid="decoder-input-panel">
-        <div className="panel-head">
+      <div className="hero-wrapper">
+        <section className="hero-section">
+          <div className="hero-editorial">
+            <div className="hero-eyebrow">SIEMENS SION 3AE5 · ENGINEERING CONFIGURATION</div>
+            <h1 className="hero-title">Decode your SION configuration with precision.</h1>
+            <p className="hero-desc">Enter a 16-position MLFB to retrieve technical specifications, configuration details and standardized wiring diagrams.</p>
+            <div className="hero-badge">
+              <span className="hero-badge-dot" /> LOCAL DATASET READY
+            </div>
+          </div>
+          
           <div>
-            <div className="panel-title"><Code2 /> Article number input</div>
-            <div className="panel-kicker">Type the code continuously. MLFB hyphens, the <code>-Z</code> boundary and Z-code <code>+</code> separators are added automatically.</div>
+            <form className="decoder-card" onSubmit={submit} data-testid="decoder-input-panel">
+              <div className="decoder-label">MLFB CODE</div>
+              <input
+                className="code-input"
+                value={input}
+                onChange={(event) => setInput(formatInput(event.target.value))}
+                placeholder="e.g. 3AE51242AC906KN0L1BF30"
+                spellCheck={false}
+                data-testid="input-mlfb"
+              />
+              <button className="button-primary" type="submit" disabled={!input.trim() || isDecoding} data-testid="button-decode">
+                {isDecoding ? 'Decoding...' : 'Decode MLFB'}
+              </button>
+              <div className="example-row">
+                <span style={{ color: 'var(--text-muted)' }}>Known configuration example:</span>
+                <span className="example-val">{exampleCode}</span>
+              </div>
+              <div style={{ textAlign: 'center', marginTop: '16px' }}>
+                <button type="button" className="link-btn" onClick={loadExample} data-testid="button-load-example">Load Example</button>
+              </div>
+              {error && <div className="alert-hero" role="alert" data-testid="status-decode-error">{error}</div>}
+            </form>
           </div>
-          {input && <button className="button-quiet" onClick={clear} data-testid="button-clear-input"><X /> Clear</button>}
-        </div>
-        <form onSubmit={submit}>
-          <div className="input-line">
-            <input
-              className="code-input"
-              value={input}
-              onChange={(event) => setInput(formatInput(event.target.value))}
-              placeholder="3AE51242AC906KN0L1BF30"
-              aria-label="MLFB or article number"
-              spellCheck={false}
-              data-testid="input-mlfb"
-            />
-            <button className="button-primary" type="submit" disabled={!input.trim() || isDecoding} data-testid="button-decode">
-              <Zap /> {isDecoding ? 'Reading catalog…' : 'Decode article'}
-            </button>
-          </div>
-        </form>
-        <div className="example-line">
-          <span>Known configuration example</span>
-          <code>{exampleCode}</code>
-          <button className="link-button" onClick={loadExample} data-testid="button-load-example">Load example</button>
-        </div>
-        {error && <div className="alert alert-error" role="alert" data-testid="status-decode-error"><TriangleAlert /> <span>{error}</span></div>}
-      </section>
+        </section>
+      </div>
 
-      {!result && !error && !isDecoding && <section className="panel empty-state" data-testid="empty-decode-state"><div><div className="empty-glyph"><Gauge /></div><h2>Awaiting a valid article number</h2><p>Start with the supplied configuration example or enter a 16-position SION 3AE5 article number. The decoder will show the catalog evidence behind each result.</p></div></section>}
-      {isDecoding && <section className="panel empty-state" data-testid="loading-decode-state"><div><div className="empty-glyph"><Database /></div><h2>Reading catalog and generating diagrams</h2><p>Checking article structure, compiling PDFs and assembling schematic macros.</p></div></section>}
-      {result && <DecodeResultView result={result} copied={copied} onCopy={copyResult} onExport={exportResult} diagramUrls={diagramUrls} />}
+      <main className="content-wrapper">
+        {!result && !error && !isDecoding && (
+          <div className="result-block" style={{ borderTop: '1px solid var(--line)', paddingTop: '80px' }}>
+            <div className="empty-box" data-testid="empty-decode-state">
+              <div className="empty-icon"><Code2 size={48} strokeWidth={1.5} /></div>
+              <h2 className="empty-title">Awaiting MLFB Input</h2>
+              <p className="empty-desc">The dashboard will populate with the 16-position breakdown, electrical specifications, and wiring diagrams upon successful decode.</p>
+            </div>
+          </div>
+        )}
+
+        {isDecoding && (
+          <div className="result-block" style={{ borderTop: '1px solid var(--line)', paddingTop: '80px' }}>
+            <div className="empty-box" data-testid="loading-decode-state">
+              <div className="empty-icon"><Database size={48} strokeWidth={1.5} /></div>
+              <h2 className="empty-title">Compiling Specifications...</h2>
+              <p className="empty-desc">Extracting positions and assembling SVG/PDF diagram schematics from local knowledge base.</p>
+            </div>
+          </div>
+        )}
+
+        {result && (
+          <div className="result-block">
+            <DecodeResultView 
+              result={result} 
+              copied={copied} 
+              onCopy={copyResult} 
+              onExport={exportResult} 
+              diagramUrls={diagramUrls} 
+            />
+          </div>
+        )}
+      </main>
     </>
   );
 }
 
 function DecodeResultView({ result, copied, onCopy, onExport, diagramUrls }: { result: DecodeResult; copied: boolean; onCopy: () => void; onExport: () => void; diagramUrls?: string[] }) {
   const sourceRows = sourceFor(result);
+  const [showSources, setShowSources] = useState(false);
+  
   return (
-    <div className="result-stack" data-testid="decode-result">
-      <section className={`result-banner ${result.valid ? '' : 'invalid'}`} data-testid="status-validation">
-        <div>
-          <div className="eyebrow">Decoded configuration</div>
-          <h2>{result.primary ? 'SION 3AE5 · catalog match' : 'SION 3AE5 · primary article not found'}</h2>
-          <div className="result-code" data-testid="text-normalized-mlfb">{result.formattedBase}{result.extras.length ? ` -Z${result.extras.join('+')}` : ''}</div>
+    <>
+      <section className="status-strip" data-testid="status-validation">
+        <div className="status-left">
+          <div className="status-label">{result.primary ? 'Configuration Decoded' : 'Primary Article Not Found'}</div>
+          <div className="status-code" data-testid="text-normalized-mlfb">
+            {result.formattedBase}{result.extras.length ? ` -Z${result.extras.join('+')}` : ''}
+          </div>
         </div>
-        <div className="result-actions">
-          <button className="button-secondary" onClick={onCopy} data-testid="button-copy-result"><ClipboardCopy /> {copied ? 'Copied' : 'Copy result'}</button>
-          <button className="button-secondary" onClick={onExport} data-testid="button-export-result"><Download /> Export JSON</button>
-          <button className="button-secondary" onClick={() => window.print()} data-testid="button-print-result"><Printer /> Print</button>
-        </div>
-        <div className={`validation-badge ${result.valid ? '' : 'invalid'}`}>
-          {result.valid ? <CheckCircle2 /> : <TriangleAlert />}
-          {result.valid ? 'VALIDATED AGAINST KB' : 'REVIEW REQUIRED'}
+        <div className="status-right">
+          <div className={`badge ${result.valid ? 'badge-success' : 'badge-error'}`}>
+            {result.valid ? <CheckCircle2 size={16} strokeWidth={2.5} /> : <TriangleAlert size={16} strokeWidth={2.5} />}
+            {result.valid ? 'VALIDATED' : 'REVIEW REQUIRED'}
+          </div>
+          <div className="action-group">
+            <button className="btn-outline" onClick={onCopy} data-testid="button-copy-result">
+              {copied ? 'Copied' : 'Copy Text'}
+            </button>
+            <button className="btn-outline" onClick={onExport} data-testid="button-export-result">
+              JSON
+            </button>
+            <button className="btn-outline" onClick={() => window.print()} data-testid="button-print-result">
+              Print
+            </button>
+          </div>
         </div>
       </section>
 
-      {result.primary && <div className="metrics" data-testid="primary-electrical-data">
-        <Metric label="Rated voltage" value={`${result.primary.rated_voltage_kv} kV`} note="50/60 Hz" accent />
-        <Metric label="Short-circuit breaking" value={`${result.primary.rated_short_circuit_breaking_current_ka} kA`} note="rated Isc" />
-        <Metric label="Continuous current" value={`${result.primary.rated_continuous_current_a} A`} note="rated Ir" />
-        <Metric label="Pole-center distance" value={`${result.primary.pole_center_distance_mm} mm`} note={`${result.primary.vertical_distance_between_terminals_mm} mm terminal distance`} />
-      </div>}
-
-      {!result.primary && <div className="alert alert-error" data-testid="status-primary-unknown"><TriangleAlert /><span><strong>Unknown primary article.</strong> Exact article prefix <code>{result.formattedBase.slice(0, 9)}</code> is absent from the local lookup table. Positions 6–8 are not guessed.</span></div>}
-
-      <div className="two-col">
-        <section className="panel section-panel" data-testid="position-breakdown">
-          <div className="section-heading"><h2>Position-by-position breakdown</h2><span>16 POSITIONS · {result.positionResults.filter((item) => !item.unknown).length} RESOLVED</span></div>
-          <div className="position-grid">
-            {result.positionResults.map((item) => <PositionCell key={item.position} item={item} />)}
+      {result.primary ? (
+        <section className="spec-strip" data-testid="primary-electrical-data">
+          <div className="spec-item">
+            <div className="spec-val">{result.primary.rated_voltage_kv} <span style={{fontSize: '24px'}}>kV</span></div>
+            <div className="spec-label">Rated Voltage</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-val">{result.primary.rated_short_circuit_breaking_current_ka} <span style={{fontSize: '24px'}}>kA</span></div>
+            <div className="spec-label">Short-Circuit Current</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-val">{result.primary.rated_continuous_current_a} <span style={{fontSize: '24px'}}>A</span></div>
+            <div className="spec-label">Continuous Current</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-val">{result.primary.pole_center_distance_mm} <span style={{fontSize: '24px'}}>mm</span></div>
+            <div className="spec-label">Pole-Center Distance</div>
+          </div>
+          <div className="spec-item">
+            <div className="spec-val">{result.primary.vertical_distance_between_terminals_mm} <span style={{fontSize: '24px'}}>mm</span></div>
+            <div className="spec-label">Terminal Distance</div>
           </div>
         </section>
-        <div className="right-column">
-          <section className="panel section-panel" data-testid="validation-panel">
-            <div className="section-heading"><h2>Validation & warnings</h2><span>{result.warnings.length} FLAG{result.warnings.length === 1 ? '' : 'S'}</span></div>
-            {result.warnings.length ? <div className="warning-list">{result.warnings.map((warning, index) => <div className="warning-item" key={`${warning}-${index}`} data-testid={`warning-item-${index}`}><TriangleAlert /><span>{warning}</span></div>)}</div> : <div className="all-clear" data-testid="status-all-clear"><ShieldCheck /><span>No compatibility conflicts detected in the supplied codes.</span></div>}
-          </section>
-          <section className="panel section-panel" style={{ marginTop: 18 }} data-testid="description-panel">
-            <div className="description-box"><h3>Human-readable description</h3><p data-testid="text-human-description">{humanDescription(result)}</p></div>
-          </section>
+      ) : (
+        <div className="alert-box alert-error" data-testid="status-primary-unknown" style={{ marginBottom: '80px' }}>
+          <TriangleAlert />
+          <span><strong>Unknown primary article.</strong> Exact article prefix <code>{result.formattedBase.slice(0, 9)}</code> is absent from the local lookup table. Positions 6–8 are not guessed.</span>
         </div>
-      </div>
+      )}
 
-      <div className="two-col">
-        <section className="panel section-panel" data-testid="order-codes-panel">
-          <div className="section-heading"><h2>Z / additional order codes</h2><span>{result.extras.length} SUPPLIED</span></div>
-          {result.orderCodes.length || result.unknownOrderCodes.length ? <div className="order-list">
-            {result.orderCodes.map((item) => <OrderItem key={item.code} item={item} />)}
-            {result.unknownOrderCodes.map((code) => <div className="order-item" key={code} data-testid={`unknown-order-code-${code}`}><div className="order-item-head"><span className="order-code">{code}</span><span className="order-tag" style={{ color: 'var(--red)' }}>Unknown code</span></div><p className="order-description">No meaning is present in the local catalog for the exact segment <strong>{code}</strong>. No interpretation has been added.</p></div>)}
-          </div> : <div className="no-orders" data-testid="empty-order-codes">No additional order codes supplied.</div>}
-        </section>
-        <section className="panel section-panel" data-testid="traceability-panel">
-          <div className="section-heading"><h2>Source traceability</h2><span>LOCAL REFERENCES</span></div>
-          <div className="source-list">{sourceRows.map((source) => <div className="source-row" key={source.label}><span>{source.label}</span><span className="source-page">{source.page}</span></div>)}</div>
-          <div className="alert alert-info" style={{ marginTop: 14 }}><Info /><span>Interpretations are from the local SION 3AE5 knowledge base. This starter is not a certification or ordering authority.</span></div>
-        </section>
-      </div>
+      <section className="details-section" data-testid="position-breakdown">
+        <div className="section-head">
+          <h2 className="section-title">Configuration Details</h2>
+          <p className="section-subtitle">Extracted 16-position breakdown and component selection rules.</p>
+        </div>
+        
+        <div className="details-grid">
+          <div>
+            <div className="pos-grid">
+              {result.positionResults.map((item) => (
+                <div className={`pos-card ${item.unknown ? 'unknown' : ''}`} key={item.position} data-testid={`position-${item.position.replace('–', '-')}`}>
+                  <div className="pos-top">
+                    <span className="pos-num">POS {item.position}</span>
+                    <span className="pos-page">{item.sourcePage}</span>
+                  </div>
+                  <div className="pos-val">{item.value}</div>
+                  <div className="pos-name">{item.label}</div>
+                  <div className="pos-desc">{item.meaning}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="summary-col">
+            <div className="summary-box" data-testid="description-panel">
+              <h3>Configuration Summary</h3>
+              <p className="summary-text" data-testid="text-human-description">{humanDescription(result)}</p>
+            </div>
+
+            <div className="summary-box" data-testid="validation-panel">
+              <h3>Validation Checks</h3>
+              <div style={{ marginTop: '16px' }}>
+                {result.warnings.length ? (
+                  result.warnings.map((warning, index) => (
+                    <div className="alert-box alert-error" key={`${warning}-${index}`} data-testid={`warning-item-${index}`} style={{ marginBottom: '8px', padding: '12px' }}>
+                      <TriangleAlert size={16} />
+                      <span style={{ fontSize: '13px' }}>{warning}</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="alert-box alert-success" data-testid="status-all-clear" style={{ margin: 0, padding: '12px' }}>
+                    <ShieldCheck size={16} />
+                    <span style={{ fontSize: '13px' }}>No compatibility conflicts detected.</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="summary-box" data-testid="order-codes-panel">
+              <h3>Additional Order Codes</h3>
+              <div className="order-list">
+                {result.orderCodes.length || result.unknownOrderCodes.length ? (
+                  <>
+                    {result.orderCodes.map((item) => (
+                      <div className="order-item" key={item.code} data-testid={`order-code-${item.code}`}>
+                        <div className="order-top">
+                          <span className="order-code">{item.code}</span>
+                          <span className="order-tag">{item.category}</span>
+                        </div>
+                        <p className="order-desc">{item.description}</p>
+                        {item.remarks && <div className="order-remark">Note: {item.remarks}</div>}
+                      </div>
+                    ))}
+                    {result.unknownOrderCodes.map((code) => (
+                      <div className="order-item" key={code} data-testid={`unknown-order-code-${code}`}>
+                        <div className="order-top">
+                          <span className="order-code">{code}</span>
+                          <span className="order-tag" style={{ color: 'var(--accent-red)' }}>Unknown</span>
+                        </div>
+                        <p className="order-desc" style={{ color: 'var(--accent-red)' }}>No interpretation added.</p>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <p className="summary-text" style={{ color: 'var(--text-muted)' }}>None supplied.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {diagramUrls && diagramUrls.length > 0 && (
-        <section className="panel section-panel" data-testid="diagrams-panel" style={{ marginTop: 18 }}>
-          <div className="section-heading"><h2>Generated Wiring Diagrams</h2><span>{diagramUrls.length} PAGE{diagramUrls.length === 1 ? '' : 'S'}</span></div>
-          <div className="diagram-list" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <section className="diagrams-section" data-testid="diagrams-panel">
+          <div className="section-head">
+            <h2 className="section-title">Generated Wiring Diagrams</h2>
+            <p className="section-subtitle">Standardized circuit diagrams generated from the decoded SION configuration.</p>
+          </div>
+          <div className="diagram-grid">
             {diagramUrls.map((url, i) => (
-              <img key={i} src={url} alt={`Wiring diagram page ${i + 1}`} style={{ width: '100%', border: '1px solid var(--border)', borderRadius: '4px' }} />
+              <div className="diagram-card" key={i}>
+                <div className="diagram-head">
+                  <span>WIRING DIAGRAM</span>
+                  <span>PAGE {String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <img className="diagram-img" src={url} alt={`Wiring diagram page ${i + 1}`} />
+              </div>
             ))}
           </div>
         </section>
       )}
-    </div>
+
+      <section>
+        <div className="trace-card">
+          <button 
+            className="trace-btn" 
+            onClick={() => setShowSources(!showSources)}
+            data-testid="traceability-panel"
+          >
+            <span>Source Traceability</span>
+            <span className="trace-icon">
+              {showSources ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+            </span>
+          </button>
+          
+          {showSources && (
+            <div className="trace-content">
+              {sourceRows.map((source) => (
+                <div className="trace-item" key={source.label}>
+                  <div className="trace-item-info">
+                    <div className="trace-doc">{source.label}</div>
+                    <div className="trace-pages">Relevant pages: <span>{source.page}</span></div>
+                  </div>
+                  <div>
+                    <span className="trace-local">Local Reference</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </>
   );
-}
-
-function Metric({ label, value, note, accent = false }: { label: string; value: string; note: string; accent?: boolean }) {
-  return <div className={`metric ${accent ? 'accent' : ''}`} data-testid={`metric-${label.toLowerCase().replace(/\s+/g, '-')}`}><div className="metric-label">{label}</div><div className="metric-value">{value}</div><div className="metric-note">{note}</div></div>;
-}
-
-function PositionCell({ item }: { item: PositionResult }) {
-  return <div className={`position-cell ${item.unknown ? 'unknown' : ''}`} data-testid={`position-${item.position.replace('–', '-')}`}>
-    <div className="position-num"><span>POS {item.position}</span><span>{item.sourcePage}</span></div>
-    <div className="position-value">{item.value}</div>
-    <div className={`position-meaning ${item.unknown ? 'unknown-text' : ''}`}><strong>{item.label}</strong><br />{item.meaning}</div>
-  </div>;
-}
-
-function OrderItem({ item }: { item: ZCode }) {
-  return <div className="order-item" data-testid={`order-code-${item.code}`}><div className="order-item-head"><span className="order-code">{item.code}</span><span className="order-tag">{item.category === 'special order code' ? 'Special order' : 'Catalogued'}</span></div><p className="order-description">{item.description}</p>{item.remarks && <p className="order-remarks"><strong>Catalog note:</strong> {item.remarks}</p>}</div>;
 }
 
 function CatalogPage() {
   const [query, setQuery] = useState('');
-  const [category, setCategory] = useState('all');
   const [catalogView, setCatalogView] = useState<'z' | 'primary'>('z');
-  const categories = useMemo(() => ['all', ...Array.from(new Set(catalog.map((item) => item.category)))], []);
+  
   const filtered = useMemo(() => {
     const normalized = query.trim().toUpperCase();
-    return catalog.filter((item) => (category === 'all' || item.category === category) && (!normalized || `${item.code} ${item.description} ${item.remarks ?? ''}`.toUpperCase().includes(normalized)));
-  }, [category, query]);
+    return catalog.filter((item) => (!normalized || `${item.code} ${item.description} ${item.remarks ?? ''}`.toUpperCase().includes(normalized)));
+  }, [query]);
+  
   const filteredPrimary = useMemo(() => {
     const normalized = query.trim().toUpperCase();
     return primaryCatalog.filter((item) => !normalized || Object.values(item).join(' ').toUpperCase().includes(normalized));
   }, [query]);
+  
   return (
     <>
-      <PageHeading eyebrow="Reference catalog / searchable local source" title={catalogView === 'z' ? 'Z-code catalog.' : 'Primary article catalog.'} description={catalogView === 'z' ? 'Browse every additional-order code loaded from the SION 3AE5 source. Search exact codes, descriptions or catalog remarks.' : 'Search the exact 16-position article prefixes and primary electrical data extracted from the source tables.'} meta={catalogView === 'z' ? `${catalog.length} LOADED CODES` : `${primaryCatalog.length} ARTICLE ROWS`} />
-      <div className="catalog-switcher" role="tablist" aria-label="Catalog source">
-        <button className={`catalog-switch ${catalogView === 'z' ? 'active' : ''}`} onClick={() => { setCatalogView('z'); setQuery(''); }} role="tab" aria-selected={catalogView === 'z'} data-testid="button-catalog-zcodes"><Code2 /> Z / additional codes <span>{catalog.length}</span></button>
-        <button className={`catalog-switch ${catalogView === 'primary' ? 'active' : ''}`} onClick={() => { setCatalogView('primary'); setQuery(''); }} role="tab" aria-selected={catalogView === 'primary'} data-testid="button-catalog-primary"><Gauge /> Primary articles <span>{primaryCatalog.length}</span></button>
+      <div className="page-header">
+        <h1 className="page-title">{catalogView === 'z' ? 'Z-Code Reference' : 'Primary Article Reference'}</h1>
+        <p className="page-subtitle">{catalogView === 'z' ? `Viewing ${catalog.length} codes` : `Viewing ${primaryCatalog.length} records`}</p>
       </div>
+      
       <div className="catalog-toolbar">
-        <div className="catalog-search-wrap"><Search /><input className="catalog-search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search code or meaning" aria-label="Search catalog" data-testid="input-catalog-search" /></div>
-        {catalogView === 'z' && <select className="filter-select" value={category} onChange={(event) => setCategory(event.target.value)} aria-label="Filter catalog category" data-testid="select-catalog-category">{categories.map((item) => <option value={item} key={item}>{item === 'all' ? 'All categories' : item}</option>)}</select>}
+        <button className={`tab-btn ${catalogView === 'z' ? 'active' : ''}`} onClick={() => { setCatalogView('z'); setQuery(''); }}>Z / Additional Codes</button>
+        <button className={`tab-btn ${catalogView === 'primary' ? 'active' : ''}`} onClick={() => { setCatalogView('primary'); setQuery(''); }}>Primary Articles</button>
       </div>
-      <div className="table-count" style={{ marginBottom: 9 }} data-testid="text-catalog-count">{catalogView === 'z' ? `${filtered.length} of ${catalog.length} codes shown` : `${filteredPrimary.length} of ${primaryCatalog.length} article rows shown`}</div>
-      <section className="catalog-table-wrap" data-testid="catalog-table">
-        {catalogView === 'z' && filtered.length ? <table className="catalog-table"><thead><tr><th>Code</th><th>Description</th><th>Catalog remarks / compatibility</th><th>Class</th></tr></thead><tbody>{filtered.map((item) => <tr key={item.code} data-testid={`catalog-row-${item.code}`}><td><span className="catalog-code">{item.code}</span></td><td>{item.description}</td><td className="catalog-remarks">{item.remarks ?? 'No additional remark supplied.'}</td><td><span className="order-tag">{item.category}</span></td></tr>)}</tbody></table> : catalogView === 'primary' && filteredPrimary.length ? <table className="catalog-table"><thead><tr><th>Article number</th><th>Ur</th><th>Isc</th><th>PCD</th><th>VDT</th><th>Ir</th></tr></thead><tbody>{filteredPrimary.map((item) => <tr key={item.article_number} data-testid={`catalog-row-${item.article_number}`}><td><span className="catalog-code">{item.article_number}</span></td><td>{item.rated_voltage_kv} kV</td><td>{item.rated_short_circuit_breaking_current_ka} kA</td><td>{item.pole_center_distance_mm} mm</td><td>{item.vertical_distance_between_terminals_mm} mm</td><td>{item.rated_continuous_current_a} A</td></tr>)}</tbody></table> : <div className="catalog-empty" data-testid="empty-catalog-state"><Search style={{ margin: '0 auto 10px' }} /><div>No catalog entries match <strong>{query}</strong>.</div></div>}
-      </section>
+      
+      <div style={{ marginBottom: '32px', maxWidth: '480px', position: 'relative' }}>
+        <Search size={20} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+        <input 
+          style={{ width: '100%', height: '52px', padding: '0 16px 0 48px', borderRadius: '8px', border: '1px solid var(--line-strong)', outline: 'none', fontSize: '15px' }} 
+          value={query} 
+          onChange={(event) => setQuery(event.target.value)} 
+          placeholder="Search codes or descriptions..." 
+        />
+      </div>
+      
+      <div className="data-table-wrap">
+        {catalogView === 'z' && filtered.length ? (
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Class</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((item) => (
+                <tr key={item.code}>
+                  <td style={{ fontWeight: 700, fontFamily: 'var(--mono)' }}>{item.code}</td>
+                  <td>{item.description}</td>
+                  <td><span style={{ color: 'var(--accent-siemens)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{item.category}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : catalogView === 'primary' && filteredPrimary.length ? (
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Ur</th>
+                <th>Isc</th>
+                <th>Ir</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredPrimary.map((item) => (
+                <tr key={item.article_number}>
+                  <td style={{ fontWeight: 700, fontFamily: 'var(--mono)' }}>{item.article_number}</td>
+                  <td>{item.rated_voltage_kv} kV</td>
+                  <td>{item.rated_short_circuit_breaking_current_ka} kA</td>
+                  <td>{item.rated_continuous_current_a} A</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="empty-box" style={{ border: '1px solid var(--line)', background: 'var(--bg-surface)', borderRadius: '12px' }}>
+            <div className="empty-icon"><Search size={32} /></div>
+            <h2 className="empty-title" style={{ fontSize: '20px' }}>No Results Found</h2>
+            <p className="empty-desc">No entries match <strong>{query}</strong>.</p>
+          </div>
+        )}
+      </div>
     </>
   );
 }
@@ -433,12 +588,28 @@ function SourcesPage() {
   ];
   return (
     <>
-      <PageHeading eyebrow="Audit notes / source boundaries" title="Trace the evidence." description="The decoder is intentionally narrow: local source tables are authoritative, and missing data is surfaced rather than inferred." meta="SOURCE MAP · 14–33" />
-      <div className="source-page-content">
-        <section className="panel source-card" data-testid="source-method-card"><h2>Deterministic by design</h2><p>Input is normalized to uppercase with whitespace removed. Hyphens, spaces and plus separators are accepted; <code>-Z</code> marks the boundary between the 16-position base article and additional order codes.</p><p>The first eight positions are checked against the exact primary article lookup table. Position 6 is deliberately not decoded from a universal digit meaning because its dimensions depend on the voltage-level table and exact article row.</p><p>For a missing row or code, the workbench shows the exact segment and says <strong>Unknown code</strong>. It does not use a language model or a fallback guess.</p></section>
-        <section className="panel source-card" data-testid="source-map-card"><h2>Catalog source map</h2><div className="source-matrix">{positions.map(([label, page]) => <div className="source-matrix-row" key={label}><span>{label}</span><span>{page}</span></div>)}</div></section>
-        <section className="panel source-card" data-testid="validation-rules-card"><h2>Compatibility checks included</h2><p>The local validation layer explicitly checks:</p><div className="warning-list"><div className="warning-item"><TriangleAlert /><span>A29 vs A30; A47 vs J60</span></div><div className="warning-item"><TriangleAlert /><span>W88 / W89 require D93</span></div><div className="warning-item"><TriangleAlert /><span>M04 / M05 require W88 or W89</span></div><div className="warning-item"><TriangleAlert /><span>S49 requires fixed mounting; B01–B09 / B17 require position 15 = X</span></div></div></section>
-        <section className="panel source-card" data-testid="source-limitations-card"><h2>Limitations</h2><p>This starter knowledge base is derived from <strong>Siemens HG 11.02 · 2026</strong>. It is not a certification or ordering authority. Some release-combination rows and configuration-dependent options require consultation of the full source catalog.</p><div className="all-clear"><ShieldCheck /><span>Traceability is retained per decoded position and for every catalogued Z-code.</span></div></section>
+      <div className="page-header">
+        <h1 className="page-title">Methodology & Sources</h1>
+        <p className="page-subtitle">Local traceability for the decoded properties.</p>
+      </div>
+      
+      <div className="details-grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
+        <div className="summary-box">
+          <h3 style={{ fontSize: '20px', margin: '0 0 16px', color: 'var(--text-main)', fontWeight: 800 }}>Deterministic Validation</h3>
+          <p className="summary-text" style={{ marginBottom: '16px' }}>Input is normalized to uppercase with whitespace removed. Hyphens, spaces and plus separators are accepted; <code>-Z</code> marks the boundary between the 16-position base article and additional order codes.</p>
+          <p className="summary-text">The first eight positions are checked against the exact primary article lookup table. Position 6 is deliberately not decoded from a universal digit meaning because its dimensions depend on the voltage-level table and exact article row.</p>
+        </div>
+        <div className="summary-box">
+          <h3 style={{ fontSize: '20px', margin: '0 0 24px', color: 'var(--text-main)', fontWeight: 800 }}>Catalog Source Map</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {positions.map(([label, page]) => (
+              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--line)', paddingBottom: '16px', fontSize: '15px' }}>
+                <span style={{ color: 'var(--text-body)', fontWeight: 500 }}>{label}</span>
+                <span style={{ color: 'var(--accent-siemens)', fontFamily: 'var(--mono)', fontWeight: 600 }}>{page}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );
